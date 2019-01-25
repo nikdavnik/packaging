@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -e
+/usr/sbin/chroot /opt/gluu-server-4.0 /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server-4.0 /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server-4.0 /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server-4.0 /bin/su - root -c 'chown -R man /var/cache/man' > /dev/null 2>&1
+
+# gluu-serverd-4.0
+mkdir -p /sbin/
+/bin/cp /opt/gluu-server-4.0/tmp/gluu-serverd-4.0 /sbin/
+rm -rf /opt/gluu-server-4.0/tmp/gluu-serverd-4.0
+
+# systemd unit file
+mkdir -p /lib/systemd/system/
+/bin/cp /opt/gluu-server-4.0/tmp/systemd-unitfile /lib/systemd/system/systemd-nspawn@gluu_server_4.0.service
+rm -rf /opt/gluu-server-4.0/tmp/systemd-unitfile
+
+sed -i 's/.*Storage.*/Storage=persistent/g' /etc/systemd/journald.conf
+systemctl restart systemd-journald
+if [[ ! -d /var/lib/container ]]; then
+  mkdir -p /var/lib/container
+fi
+ln -s /opt/gluu-server-4.0 /var/lib/container/gluu_server_4.0
+
+if [[ -d /etc/gluu/keys ]]; then
+  rm -rf /etc/gluu/keys
+  mkdir -p /etc/gluu/keys
+else
+  mkdir -p /etc/gluu/keys
+fi
+ssh-keygen -b 2048 -t rsa -f /etc/gluu/keys/gluu-console -q -N ""
+if [[ ! -d /opt/gluu-server-4.0/root/.ssh ]]; then
+  mkdir -p /opt/gluu-server-4.0/root/.ssh
+  chmod 700 /opt/gluu-server-4.0/root/.ssh
+fi
+cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server-4.0/root/.ssh/authorized_keys
+chmod 600 /opt/gluu-server-4.0/root/.ssh/authorized_keys
+chmod 400 /opt/gluu-server-4.0/etc/ssh/ssh_host_rsa_key
+chmod 400 /opt/gluu-server-4.0/etc/ssh/ssh_host_ecdsa_key
+chmod 400 /opt/gluu-server-4.0/etc/ssh/ssh_host_ed25519_key
+
+/bin/cp /etc/resolv.conf /opt/gluu-server-4.0/etc/ > /dev/null 2>&1
+
+exit 0
