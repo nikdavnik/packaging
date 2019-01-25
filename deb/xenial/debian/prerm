@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+echo "Checking to make sure Gluu Server is down..."
+
+case $1 in
+    remove|deconfigure|upgrade)
+        if [ -f /etc/init.d/gluu-server-3.1.5 ]; then
+		/etc/init.d/gluu-server-3.1.5 stop
+        fi
+	exit 0
+        ;;
+    failed-upgrade)
+        exit 2
+        ;;
+    *)
+        echo "Prerm called with unknown argument '$1'" >&2
+        exit 0
+        ;;
+esac
+exit $?
