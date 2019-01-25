@@ -21,7 +21,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-GLUU_VERSION=3.1.5
+GLUU_VERSION=4.0
 
 
 detect_os() {
@@ -237,6 +237,17 @@ stop() {
                 fi
         fi
 
+        if [ -x /opt/gluu-server-$GLUU_VERSION/etc/init.d/couchbase-server ] && [ "`ps aux | grep beam.smp | grep -v grep`"  != "" ]; then
+             	echo "Stopping Couchbase Server..."
+            	/usr/sbin/chroot /opt/gluu-server-$GLUU_VERSION su - root -c 'service couchbase-server stop' > /dev/null 2>&1
+                sleep 5
+                if [ "`ps aux | grep slapd | grep -v grep`"  != "" ]; then
+                   echo "Failed"
+                else
+                   echo "OK"    
+                fi
+        fi
+
         if ! [[ $DETECTED_OS == "Ubuntu 14.04" || $DETECTED_OS == "Ubuntu 16.04" || $DETECTED_OS == "Ubuntu 18.04" || $DETECTED_OS == "Debian GNU/Linux 8" || $DETECTED_OS == "Debian GNU/Linux 9" ]]; then
 		/usr/sbin/chroot /opt/gluu-server-$GLUU_VERSION su - root -c '/etc/rc.d/rc 7' > /dev/null 2>&1
         	sleep 5
@@ -290,7 +301,6 @@ ready() {
         STAT=(`df -aP |grep \/opt\/gluu-server-$GLUU_VERSION\/ | awk '{ print $6 }' | grep -Eohw 'proc|lo|pts|modules|dev'|sort|uniq`)
         ### Since, PORTS is also in use for checking the status, So we should check PORTS as well with every call to this function.
         PORTS=`netstat -tunpl | awk '{ print $4 }' |grep -Eoh ':(80|443|8080|8081|8082|8083|8084|8085|8086|8090|8091|1389|1689|11211)$'`
-
         if [ -f $PIDFILE ] && [ ${#STAT[@]} = "5" ]; then
         	PID=`cat $PIDFILE`
                 return 1

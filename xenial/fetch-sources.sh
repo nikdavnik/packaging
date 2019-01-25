@@ -3,8 +3,8 @@
 VER=$1
 INSTALL_VER=$2
 
-DIRWEB="gluu-server.amd64/gluu-server-3.1.5/opt/dist/gluu"
-COMMUNITY="gluu-server.amd64/gluu-server-3.1.5/install"
+DIRWEB="gluu-server.amd64/gluu-server-4.0/opt/dist/gluu"
+COMMUNITY="gluu-server.amd64/gluu-server-4.0/install"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
@@ -23,8 +23,8 @@ if [ -n "${VER}" ]; then
     unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
     mv -nv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
     rm -rf $COMMUNITY/community-edition-setup.zip
-    wget https://ox.gluu.org/npm/passport/passport-3.1.5.tgz -O $DIRWEB/passport.tgz
-    wget https://ox.gluu.org/npm/passport/passport-version_3.1.5-node_modules.tar.gz -O $DIRWEB/passport-version_3.1.5-node_modules.tar.gz
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/initd/gluu-server -O gluu-server.amd64/debian/gluu-server-3.1.5.init.d
-    chmod +x gluu-server.amd64/debian/gluu-server-3.1.5.init.d
+    wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DIRWEB/passport.tgz
+    wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DIRWEB/passport-master-node_modules.tar.gz
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/initd/gluu-server -O gluu-server.amd64/debian/gluu-server-4.0.init.d
+    chmod +x gluu-server.amd64/debian/gluu-server-4.0.init.d
 fi
