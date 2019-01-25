@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $1 != "upgrade" ] ; then
+    if [ -f /etc/init.d/gluu-server-3.1.5 ] ; then
+        rm -rf /etc/init.d/gluu-server-3.1.5
+    fi
+    if [ -d /opt/gluu-server-3.1.5.save ] ; then
+        rm -rf /opt/gluu-server-3.1.5.save
+    fi
+    if [ -d /opt/gluu-server-3.1.5 ] ; then
+        mv /opt/gluu-server-3.1.5 /opt/gluu-server-3.1.5.save
+    fi
+    echo "Your changes will be saved into /opt/gluu-server-3.1.5.saved"
+fi
+exit 0
