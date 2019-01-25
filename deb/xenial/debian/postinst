@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+/usr/sbin/chroot /opt/gluu-server-3.1.5 /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server-3.1.5 /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server-3.1.5 /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
+
+/bin/cp -a /etc/resolv.conf /opt/gluu-server-3.1.5/etc/ > /dev/null 2>&1
+
+update-rc.d gluu-server-3.1.5 defaults
+
+exit 0
