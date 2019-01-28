@@ -27,5 +27,4 @@ if [ -n "${VER}" ]; then
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DIRWEB/passport-master-node_modules.tar.gz
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server-4.0/tmp/gluu-serverd-4.0
     chmod +x gluu-server.amd64/gluu-server-4.0/tmp/gluu-serverd-4.0
-    wget https://raw.githubusercontent.com/GluuFederation/packaging/4.0/deb/bionic/systemd-unitfile -O gluu-server.amd64/gluu-server-4.0/tmp/systemd-unitfile
 fi
