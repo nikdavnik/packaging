@@ -18,6 +18,7 @@ if [ -n "${VER}" ]; then
     #wget -nv http://ox.gluu.org/maven/org/xdi/oxauth-rp/$VER/oxauth-rp-$VER.war -O $DIRWEB/oxauth-rp.war
     wget -nv http://ox.gluu.org/maven/org/xdi/oxShibbolethStatic/$VER/oxShibbolethStatic-$VER.jar -O $DIRWEB/shibboleth-idp.jar
     wget -nv http://ox.gluu.org/maven/org/xdi/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DIRWEB/idp3_cml_keygenerator.jar
+    wget -nv https://ftp.osuosl.org/pub/gentoo/distfiles/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_7.tar.gz -O $DIRWEB/../app/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_7.tar.gz
     rm -rf $COMMUNITY/community-edition-setup*
     curl -LkSs https://codeload.github.com/GluuFederation/community-edition-setup/zip/$INSTALL -o $COMMUNITY/community-edition-setup.zip
     unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
