@@ -25,6 +25,6 @@ if [ -n "${VER}" ]; then
     rm -rf $COMMUNITY/community-edition-setup.zip
     wget https://ox.gluu.org/npm/passport/passport-4.0.tgz -O $DIRWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DIRWEB/passport-master-node_modules.tar.gz
-  # wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/initd/gluu-server -O gluu-server.amd64/debian/gluu-server-4.0.init.d
-  # chmod +x gluu-server.amd64/debian/gluu-server-4.0.init.d
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server-4.0/tmp/gluu-serverd-4.0
+    chmod +x gluu-server.amd64/gluu-server-4.0/tmp/gluu-serverd-4.0
 fi
