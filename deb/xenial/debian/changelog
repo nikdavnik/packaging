@@ -1,4 +1,4 @@
-gluu-server-4.0 (1-1~xenial+Ub16.04) unstable; urgency=medium
+gluu-server-4.0 %VERSION% %DIST%; urgency=medium
 
   * New version 4.0
 
