@@ -1,4 +1,4 @@
-gluu-server-4.0 (3-Beta4~trusty+Ub14.04) trusty; urgency=medium
+gluu-server-4.0 %VERSION% %DIST%; urgency=medium
 
   * New version 4.0
 
