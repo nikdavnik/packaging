@@ -12,9 +12,9 @@ Vendor: Gluu, Inc.
 Packager: Gluu support <support@gluu.org>
 Source0: gluu-server-4.0.tar.gz
 Source1: gluu-server-init-script
-%description
-Gluu CE Server
 
+%description
+Enterprise ready, free open source software for identity & access management (IAM).
 
 %install
 rm -rf %{buildroot}
@@ -38,7 +38,6 @@ tar -xzf %{SOURCE0} -C %{buildroot}/opt
 %preun
 echo "Checking if Gluu Server isn't running..."
 /sbin/service gluu-server-4.0 stop > /dev/null 2>&1
-
 /sbin/chkconfig --del gluu-server-4.0
 STAT=(`df -aP |grep gluu | awk '{ print $6 }' | grep -Eohw 'proc|lo|pts|modules|dev' |sort -u`)
 if [ "$STAT" != "" ]; then
@@ -52,7 +51,6 @@ fi
 if [ -d /opt/gluu-server-4.0.rpm.saved ] ; then
 	rm -rf /opt/gluu-server-4.0.rpm.saved
 fi
-
 /bin/mv /opt/gluu-server-4.0 /opt/gluu-server-4.0.rpm.saved
 echo "Your changes will be saved into /opt/gluu-server-4.0.rpm.saved"
 
