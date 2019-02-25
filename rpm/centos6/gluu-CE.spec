@@ -3,17 +3,17 @@
 Name: gluu-server-4.0
 Version: 1
 Release: 1.centos6
-Summary: Gluu chroot CE environment
+Summary: Gluu Server
 Group: Gluu
 Requires: tar, net-tools
 AutoReqProv: no
-License: GLUU License
+License: MIT
 Vendor: Gluu, Inc.
 Packager: Gluu support <support@gluu.org>
 Source0: gluu-server-4.0.tar.gz
 Source1: gluu-server-init-script
 %description
-Gluu base deployment for CE
+Gluu CE Server
 
 
 %install
