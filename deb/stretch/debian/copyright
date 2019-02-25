@@ -1,15 +1,9 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: gluu-server-2.4.4
-Source: <url://github.com/GluuFederation>
+Upstream-Name: Gluu Server
+Source: http://gluu.org/
 
 Files: *
-Copyright: Copyright 2015 Gluu <noresponse@gluu.org>
-License: MIT
-
-Files: debian/*
-Copyright: 2015 Gluu Developers <noresponse@gluu.org>
-License: MIT
-
+Copyright: Copyright 2009 Gluu, Inc <support@gluu.org>
 License: MIT
  Permission is hereby granted, free of charge, to any person obtaining a
  copy of this software and associated documentation files (the "Software"),
