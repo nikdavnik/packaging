@@ -12,12 +12,12 @@ if [ -n "${INSTALL_VER}" ]; then
 fi
 
 if [ -n "${VER}" ]; then
-    wget -nv http://ox.gluu.org/maven/org/xdi/oxshibbolethIdp/$VER/oxshibbolethIdp-$VER.war -O $DIRWEB/idp.war
-    wget -nv http://ox.gluu.org/maven/org/xdi/oxtrust-server/$VER/oxtrust-server-$VER.war -O $DIRWEB/identity.war
-    wget -nv http://ox.gluu.org/maven/org/xdi/oxauth-server/$VER/oxauth-server-$VER.war -O $DIRWEB/oxauth.war
-    #wget -nv http://ox.gluu.org/maven/org/xdi/oxauth-rp/$VER/oxauth-rp-$VER.war -O $DIRWEB/oxauth-rp.war
-    wget -nv http://ox.gluu.org/maven/org/xdi/oxShibbolethStatic/$VER/oxShibbolethStatic-$VER.jar -O $DIRWEB/shibboleth-idp.jar
-    wget -nv http://ox.gluu.org/maven/org/xdi/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DIRWEB/idp3_cml_keygenerator.jar
+    wget -nv http://ox.gluu.org/maven/org/gluu/oxshibbolethIdp/$VER/oxshibbolethIdp-$VER.war -O $DIRWEB/idp.war
+    wget -nv http://ox.gluu.org/maven/org/gluu/oxtrust-server/$VER/oxtrust-server-$VER.war -O $DIRWEB/identity.war
+    wget -nv http://ox.gluu.org/maven/org/gluu/oxauth-server/$VER/oxauth-server-$VER.war -O $DIRWEB/oxauth.war
+    #wget -nv http://ox.gluu.org/maven/org/gluu/oxauth-rp/$VER/oxauth-rp-$VER.war -O $DIRWEB/oxauth-rp.war
+    wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethStatic/$VER/oxShibbolethStatic-$VER.jar -O $DIRWEB/shibboleth-idp.jar
+    wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DIRWEB/idp3_cml_keygenerator.jar
     rm -rf $COMMUNITY/community-edition-setup*
     curl -LkSs https://codeload.github.com/GluuFederation/community-edition-setup/zip/$INSTALL -o $COMMUNITY/community-edition-setup.zip
     unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
