@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ "$1" != "upgrade" ] ; then
+    if [ "$1" = "purge" ] ; then
+        if [ -d /opt/gluu-server-vip-4.0.save ] ; then
+            echo "Removing saved changes /opt/gluu-server-vip-4.0.save"
+            rm -rf /opt/gluu-server-vip-4.0.save
+        fi
+    else 
+        if [ -f /etc/init.d/gluu-server-vip-4.0 ] ; then
+            rm -rf /etc/init.d/gluu-server-vip-4.0
+        fi
+
+        if [ -f /sbin/gluu-serverd-4.0 ] ; then
+            rm -rf /sbin/gluu-serverd-4.0
+        fi
+    
+        if [ -d /opt/gluu-server-vip-4.0.save ] ; then
+            rm -rf /opt/gluu-server-vip-4.0.save
+        fi
+
+        if [ -d /opt/gluu-server-vip-4.0 ] ; then
+            mv /opt/gluu-server-vip-4.0 /opt/gluu-server-vip-4.0.save
+            echo "Your changes will be saved into /opt/gluu-server-vip-4.0.save"
+        fi
+    fi
+fi
+mkdir -p /opt
+exit 0
