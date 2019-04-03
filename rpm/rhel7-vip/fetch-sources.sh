@@ -29,9 +29,11 @@ if [ -n "${VER}" ]; then
     rm -rf $COMMUNITY/community-edition-setup.zip
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-serverd-4.0
     chmod +x gluu-serverd-4.0
+    sed -i "s/gluu-server/gluu-server-vip/g" gluu-serverd-4.0
+    sed -i "s/gluu_server/gluu_server_vip/g" gluu-serverd-4.0
     wget https://ox.gluu.org/npm/passport/passport-4.0.tgz -O $DISTWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DISTWEB/passport-master-node_modules.tar.gz
 
-    mkdir -p gluu-server.amd64/gluu-server-vip-4.0/opt/couchbase/
-    wget https://packages.couchbase.com/releases/6.0.1/couchbase-server-enterprise-6.0.1-centos7.x86_64.rpm -O gluu-server.amd64/gluu-server-vip-4.0/opt/couchbase/couchbase-server-enterprise-6.0.1-centos7.x86_64.rpm
+    mkdir -p gluu-server-vip-4.0/opt/couchbase/
+    wget https://packages.couchbase.com/releases/6.0.1/couchbase-server-enterprise-6.0.1-centos7.x86_64.rpm -O gluu-server-vip-4.0/opt/couchbase/couchbase-server-enterprise-6.0.1-centos7.x86_64.rpm
 fi

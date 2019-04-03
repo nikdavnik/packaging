@@ -27,6 +27,8 @@ if [ -n "${VER}" ]; then
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DIRWEB/passport-master-node_modules.tar.gz
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
     chmod +x gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
+    sed -i "s/gluu-server/gluu-server-vip/g" gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
+    sed -i "s/gluu_server/gluu_server_vip/g" gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
    
     mkdir -p gluu-server.amd64/gluu-server-vip-4.0/opt/couchbase/
     wget https://packages.couchbase.com/releases/6.0.1/couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb -O gluu-server.amd64/gluu-server-vip-4.0/opt/couchbase/couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb
