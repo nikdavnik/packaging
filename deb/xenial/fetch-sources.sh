@@ -27,4 +27,12 @@ if [ -n "${VER}" ]; then
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DIRWEB/passport-master-node_modules.tar.gz
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/initd/gluu-server -O gluu-server.amd64/debian/gluu-server-4.0.init.d
     chmod +x gluu-server.amd64/debian/gluu-server-4.0.init.d
+    
+    # systemd files for services
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/identity.service 
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/opendj.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/oxauth-rp.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/oxauth.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/passport.service
+    
 fi
