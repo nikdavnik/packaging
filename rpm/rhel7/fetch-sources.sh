@@ -31,4 +31,12 @@ if [ -n "${VER}" ]; then
     chmod +x gluu-serverd-4.0
     wget https://ox.gluu.org/npm/passport/passport-4.0.tgz -O $DISTWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DISTWEB/passport-master-node_modules.tar.gz
+    
+    # systemd files for services
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server-4.0/lib/systemd/system/identity.service 
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server-4.0/lib/systemd/system/opendj.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server-4.0/lib/systemd/system/oxauth-rp.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server-4.0/lib/systemd/system/oxauth.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server-4.0/lib/systemd/system/passport.service
+    
 fi
