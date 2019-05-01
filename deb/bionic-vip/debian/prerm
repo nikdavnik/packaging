@@ -5,10 +5,7 @@ set -e
 echo "Checking to make sure Gluu Server is down..."
 
 case $1 in
-    remove)
-        if [ -f /etc/init.d/gluu-server-4.0 ]; then
-            /etc/init.d/gluu-server-4.0 stop
-        fi    
+    remove)  
         if [ -f /sbin/gluu-serverd-4.0 ]; then
             /sbin/gluu-serverd-4.0 stop
         fi
