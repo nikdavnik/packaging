@@ -8,6 +8,8 @@ set -e
 
 /bin/cp -a /etc/resolv.conf /opt/gluu-server-4.0/etc/ > /dev/null 2>&1
 
-update-rc.d gluu-server-4.0 defaults
+if [ -e /etc/init.d/gluu-server-4.0 ]; then
+    update-rc.d gluu-server-4.0 defaults
+fi
 
 exit 0
