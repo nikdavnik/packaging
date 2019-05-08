@@ -2,11 +2,19 @@
 
 if [ "$1" = "remove" ] ; then
     if [ -f /etc/init.d/gluu-server-4.0 ] ; then
+        update-rc.d gluu-server-4.0 remove
         rm -rf /etc/init.d/gluu-server-4.0
     fi
 
     if [ -f /sbin/gluu-serverd-4.0 ] ; then
         rm -rf /sbin/gluu-serverd-4.0
     fi
+    
+    if [ -f /lib/systemd/system/systemd-nspawn@gluu_server_4.0.service ]; then
+        systemctl disable systemd-nspawn@gluu_server_4.0.service        
+        rm -rf /lib/systemd/system/systemd-nspawn@gluu_server_4.0.service
+    fi
+    
+    rm -rf /var/lib/dpkg/info/gluu-server-4.0.*
 fi
 exit 0
