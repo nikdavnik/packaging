@@ -36,7 +36,7 @@ if [ -n "${VER}" ]; then
 
     mkdir -p gluu-server-vip-4.0/opt/couchbase/
     wget https://packages.couchbase.com/releases/6.0.1/couchbase-server-enterprise-6.0.1-centos7.x86_64.rpm -O gluu-server-vip-4.0/opt/couchbase/couchbase-server-enterprise-6.0.1-centos7.x86_64.rpm
-    wget -nv http://c1.gluu.org:8999/gluu-radius.tgz -O $DIRWEB/gluu-radius.tgz
+    #wget -nv http://c1.gluu.org:8999/gluu-radius.tgz -O $DIRWEB/gluu-radius.tgz
      
     # systemd files for services
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server-4.0/lib/systemd/system/identity.service 
