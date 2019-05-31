@@ -21,7 +21,7 @@ if [ -n "${VER}" ]; then
     #wget -nv http://ox.gluu.org/maven/org/gluu/oxauth-rp/$VER/oxauth-rp-$VER.war -O $DIRWEB/oxauth-rp.war
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethStatic/$VER/oxShibbolethStatic-$VER.jar -O $DISTWEB/shibboleth-idp.jar
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DISTWEB/idp3_cml_keygenerator.jar
-#    wget -nv http://ox.gluu.org/maven/org/gluu/credmgr/credmgr/$VER/credmgr-$VER.war -O $DISTWEB/credmgr.war
+#   wget -nv http://ox.gluu.org/maven/org/gluu/credmgr/credmgr/$VER/credmgr-$VER.war -O $DISTWEB/credmgr.war
     rm -rf $COMMUNITY/community-edition-setup*
     curl -LkSs https://codeload.github.com/GluuFederation/community-edition-setup/zip/$INSTALL -o $COMMUNITY/community-edition-setup.zip
     unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
@@ -31,7 +31,8 @@ if [ -n "${VER}" ]; then
     chmod +x gluu-server-init-script
     wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DISTWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DISTWEB/passport-master-node_modules.tar.gz
-    #wget -nv http://c1.gluu.org:8999/gluu-radius.tgz -O $DIRWEB/gluu-radius.tgz
+    wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
+    wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT.jar -O $DIRWEB/super-gluu-radius-server.jar
 
     # systemd files for services
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server-4.0/lib/systemd/system/identity.service 
@@ -39,5 +40,4 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server-4.0/lib/systemd/system/oxauth-rp.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server-4.0/lib/systemd/system/oxauth.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server-4.0/lib/systemd/system/passport.service
-
 fi
