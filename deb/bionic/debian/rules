@@ -11,7 +11,7 @@
 
 override_dh_install:
 	dh_install
-	find ./debian/gluu-server -name "*.gitignore" -delete
+	find ./debian/gluu-server-4.0 -name "*.gitignore" -delete
 override_dh_perl:
 override_dh_link:
 override_dh_strip:
@@ -21,6 +21,6 @@ override_dh_shlibdeps:
 override_dh_strip_nondeterminism:
 override_dh_fixperms:
 	dh_fixperms
-	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/ld-2.27.so
-	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/libc-2.27.so
-	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/libpthread-2.27.so
+	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/ld-2.27.so
+	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/libc-2.27.so
+	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/libpthread-2.27.so
