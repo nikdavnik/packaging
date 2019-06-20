@@ -13,7 +13,7 @@ Before=machines.target
 After=network-online.target
 
 [Service]
-ExecStart=/usr/bin/systemd-nspawn --quiet --boot --link-journal=try-guest -D /opt/gluu-server-4.0 --machine=%I
+ExecStart=/usr/bin/systemd-nspawn --quiet --boot --link-journal=try-guest -D /opt/gluu-server --machine=%I
 KillMode=mixed
 Type=notify
 RestartForceExitStatus=133
