@@ -9,12 +9,12 @@ case $1 in
         if [ -f /sbin/gluu-serverd-4.0 ]; then
             /sbin/gluu-serverd-4.0 stop
         fi
-        if [ -d /opt/gluu-server-4.0.save ] ; then
-            rm -rf /opt/gluu-server-4.0.save
+        if [ -d /opt/gluu-server.save ] ; then
+            rm -rf /opt/gluu-server.save
         fi
-        if [ -d /opt/gluu-server-4.0 ] ; then
-	    echo "Your changes will be saved into /opt/gluu-server-4.0.saved"
-            mv /opt/gluu-server-4.0 /opt/gluu-server-4.0.save
+        if [ -d /opt/gluu-server ] ; then
+	    echo "Your changes will be saved into /opt/gluu-server.saved"
+            mv /opt/gluu-server /opt/gluu-server.save
         fi
         exit 0
         ;;
