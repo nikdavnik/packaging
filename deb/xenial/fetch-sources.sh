@@ -3,8 +3,8 @@
 VER=$1
 INSTALL_VER=$2
 
-DIRWEB="gluu-server.amd64/gluu-server-4.0/opt/dist/gluu"
-COMMUNITY="gluu-server.amd64/gluu-server-4.0/install"
+DIRWEB="gluu-server.amd64/gluu-server/opt/dist/gluu"
+COMMUNITY="gluu-server.amd64/gluu-server/install"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
