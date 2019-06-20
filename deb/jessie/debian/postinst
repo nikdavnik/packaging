@@ -2,11 +2,11 @@
 
 set -e
 
-/usr/sbin/chroot /opt/gluu-server-4.0 /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
-/usr/sbin/chroot /opt/gluu-server-4.0 /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
-/usr/sbin/chroot /opt/gluu-server-4.0 /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
 
-/bin/cp -a /etc/resolv.conf /opt/gluu-server-4.0/etc/ > /dev/null 2>&1
+/bin/cp -a /etc/resolv.conf /opt/gluu-server/etc/ > /dev/null 2>&1
 
 if [ -e /etc/init.d/gluu-server-4.0 ]; then
     update-rc.d gluu-server-4.0 defaults
