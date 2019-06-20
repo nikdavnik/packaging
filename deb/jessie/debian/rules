@@ -22,8 +22,8 @@ override_dh_shlibdeps:
 override_dh_strip_nondeterminism:
 override_dh_fixperms:
 	dh_fixperms
-	chmod 544 ./debian/gluu-server-4.0/opt/gluu-server-4.0/tmp/system_user.list
-	chmod 544 ./debian/gluu-server-4.0/opt/gluu-server-4.0/tmp/system_group.list
-	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server-4.0/lib/x86_64-linux-gnu/ld-2.19.so
-	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server-4.0/lib/x86_64-linux-gnu/libc-2.19.so
-	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server-4.0/lib/x86_64-linux-gnu/libpthread-2.19.so
+	chmod 544 ./debian/gluu-server-4.0/opt/gluu-server/tmp/system_user.list
+	chmod 544 ./debian/gluu-server-4.0/opt/gluu-server/tmp/system_group.list
+	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/ld-2.19.so
+	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/libc-2.19.so
+	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/libpthread-2.19.so
