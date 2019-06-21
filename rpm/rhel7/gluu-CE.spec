@@ -1,5 +1,5 @@
 %global __os_install_post %{nil}
-%define gluu_root /opt/gluu-server-4.0
+%define gluu_root /opt/gluu-server
 
 Name: gluu-server-4.0
 Version: 1
