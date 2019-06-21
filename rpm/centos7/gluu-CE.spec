@@ -9,7 +9,7 @@ Group: Gluu
 License: MIT
 Vendor: Gluu, Inc.
 Packager: Gluu support <support@gluu.org>
-Source0: gluu-server-4.0.tar.gz
+Source0: gluu-server.tar.gz
 Source1: gluu-serverd-4.0
 Source2: systemd-unitfile
 AutoReqProv: no
@@ -57,9 +57,9 @@ if [[ ! -d /opt/gluu-server-4.0/root/.ssh ]]; then
   mkdir -p /opt/gluu-server-4.0/root/.ssh
   chmod 700 /opt/gluu-server-4.0/root/.ssh
 fi
-cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server-4.0/root/.ssh/authorized_keys
-chmod 600 /opt/gluu-server-4.0/root/.ssh/authorized_keys
-cp -a /etc/resolv.conf /opt/gluu-server-4.0/etc/
+cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server/root/.ssh/authorized_keys
+chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
+cp -a /etc/resolv.conf /opt/gluu-server/etc/
 
 %preun
 echo "Stopping Gluu Server ..."
@@ -73,7 +73,7 @@ fi
 echo "Your changes will be saved into %{gluu_root}.rpm.saved"
 rm -rf /etc/gluu/keys
 unlink /var/lib/container/gluu_server_4.0
-rm -rf /opt/gluu-server-4.0
+rm -rf /opt/gluu-server
 
 %files
 %{gluu_root}/*
