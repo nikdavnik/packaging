@@ -14,8 +14,8 @@ specfile=gluu-CE.spec
 # Prepare sources
 cd $gluu_ce_path
 
-/bin/tar czvf gluu-server-4.0.tar.gz --exclude=".gitignore" gluu-server-4.0
-/bin/mv gluu-server-4.0.tar.gz $rpmbuild_path/SOURCES/
+/bin/tar czvf gluu-server.tar.gz --exclude=".gitignore" gluu-server
+/bin/mv gluu-server.tar.gz $rpmbuild_path/SOURCES/
 /bin/cp gluu-serverd-4.0 $rpmbuild_path/SOURCES/gluu-serverd-4.0
 /bin/cp systemd-unitfile $rpmbuild_path/SOURCES/systemd-unitfile
 /bin/cp $specfile $rpmbuild_path/SPECS/
