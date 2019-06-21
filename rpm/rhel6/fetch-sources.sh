@@ -5,8 +5,8 @@ build_root="./gluu-server"
 VER=$1
 INSTALL_VER=$2
 
-DISTWEB="gluu-server-4.0/opt/dist/gluu"
-COMMUNITY="gluu-server-4.0/install"
+DISTWEB="gluu-server/opt/dist/gluu"
+COMMUNITY="gluu-server/install"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
