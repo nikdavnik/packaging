@@ -5,8 +5,8 @@ build_root="./gluu-server"
 VER=$1
 INSTALL_VER=$2
 
-DISTWEB="gluu-server-4.0/opt/dist/gluu"
-COMMUNITY="gluu-server-4.0/install"
+DISTWEB="gluu-server/opt/dist/gluu"
+COMMUNITY="gluu-server/install"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
@@ -35,9 +35,9 @@ if [ -n "${VER}" ]; then
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT.jar -O $DIRWEB/super-gluu-radius-server.jar
 
     # systemd files for services
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server-4.0/lib/systemd/system/identity.service 
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server-4.0/lib/systemd/system/opendj.service
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server-4.0/lib/systemd/system/oxauth-rp.service
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server-4.0/lib/systemd/system/oxauth.service
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server-4.0/lib/systemd/system/passport.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server/lib/systemd/system/identity.service 
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server/lib/systemd/system/opendj.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server/lib/systemd/system/oxauth-rp.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server/lib/systemd/system/oxauth.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server/lib/systemd/system/passport.service
 fi
