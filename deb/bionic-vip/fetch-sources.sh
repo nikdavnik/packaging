@@ -3,8 +3,8 @@
 VER=$1
 INSTALL_VER=$2
 
-DIRWEB="gluu-server.amd64/gluu-server-vip-4.0/opt/dist/gluu"
-COMMUNITY="gluu-server.amd64/gluu-server-vip-4.0/install"
+DIRWEB="gluu-server.amd64/gluu-server-vip/opt/dist/gluu"
+COMMUNITY="gluu-server.amd64/gluu-server-vip/install"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
@@ -25,20 +25,20 @@ if [ -n "${VER}" ]; then
     rm -rf $COMMUNITY/community-edition-setup.zip
     wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DIRWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DIRWEB/passport-master-node_modules.tar.gz
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
-    chmod +x gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
-    sed -i "s/gluu-server/gluu-server-vip/g" gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
-    sed -i "s/gluu_server/gluu_server_vip/g" gluu-server.amd64/gluu-server-vip-4.0/tmp/gluu-serverd-4.0
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server-vip/tmp/gluu-serverd-4.0
+    chmod +x gluu-server.amd64/gluu-server-vip/tmp/gluu-serverd-4.0
+    sed -i "s/gluu-server/gluu-server-vip/g" gluu-server.amd64/gluu-server-vip/tmp/gluu-serverd-4.0
+    sed -i "s/gluu_server/gluu_server_vip/g" gluu-server.amd64/gluu-server-vip/tmp/gluu-serverd-4.0
    
-    mkdir -p gluu-server.amd64/gluu-server-vip-4.0/opt/couchbase/
-    wget https://packages.couchbase.com/releases/6.0.1/couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb -O gluu-server.amd64/gluu-server-vip-4.0/opt/couchbase/couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb
+    mkdir -p gluu-server.amd64/gluu-server-vip/opt/couchbase/
+    wget https://packages.couchbase.com/releases/6.0.1/couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb -O gluu-server.amd64/gluu-server-vip/opt/couchbase/couchbase-server-enterprise_6.0.1-ubuntu18.04_amd64.deb
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT.jar -O $DIRWEB/super-gluu-radius-server.jar
     
     # systemd files for services
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/identity.service 
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/opendj.service
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/oxauth-rp.service
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/oxauth.service
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server.amd64/gluu-server-4.0/lib/systemd/system/passport.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server.amd64/gluu-server-vip/lib/systemd/system/identity.service 
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server.amd64/gluu-server-vip/lib/systemd/system/opendj.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server.amd64/gluu-server-vip/lib/systemd/system/oxauth-rp.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server.amd64/gluu-server-vip/lib/systemd/system/oxauth.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server.amd64/gluu-server-vip/lib/systemd/system/passport.service
 fi
