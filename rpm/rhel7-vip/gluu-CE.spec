@@ -1,5 +1,5 @@
 %global __os_install_post %{nil}
-%define gluu_root /opt/gluu-server-vip-4.0
+%define gluu_root /opt/gluu-server-vip
 
 Name: gluu-server-vip-4.0
 Version: 1
