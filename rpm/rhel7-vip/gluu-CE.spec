@@ -9,7 +9,7 @@ Group: Gluu
 License: MIT
 Vendor: Gluu, Inc.
 Packager: Gluu support <support@gluu.org>
-Source0: gluu-server-vip-4.0.tar.gz
+Source0: gluu-server-vip.tar.gz
 Source1: gluu-serverd-4.0
 Source2: systemd-unitfile
 AutoReqProv: no
@@ -53,13 +53,13 @@ else
   mkdir -p /etc/gluu/keys
 fi
 ssh-keygen -b 2048 -t rsa -f /etc/gluu/keys/gluu-console -q -N ""
-if [[ ! -d /opt/gluu-server-vip-4.0/root/.ssh ]]; then
-  mkdir -p /opt/gluu-server-vip-4.0/root/.ssh
-  chmod 700 /opt/gluu-server-vip-4.0/root/.ssh
+if [[ ! -d /opt/gluu-server-vip/root/.ssh ]]; then
+  mkdir -p /opt/gluu-server-vip/root/.ssh
+  chmod 700 /opt/gluu-server-vip/root/.ssh
 fi
-cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server-vip-4.0/root/.ssh/authorized_keys
-chmod 600 /opt/gluu-server-vip-4.0/root/.ssh/authorized_keys
-cp -a /etc/resolv.conf /opt/gluu-server-vip-4.0/etc/
+cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server-vip/root/.ssh/authorized_keys
+chmod 600 /opt/gluu-server-vip/root/.ssh/authorized_keys
+cp -a /etc/resolv.conf /opt/gluu-server-vip/etc/
 
 %preun
 echo "Stopping Gluu Server ..."
@@ -74,7 +74,7 @@ fi
 echo "Your changes will be saved into %{gluu_root}.rpm.saved"
 rm -rf /etc/gluu/keys
 unlink /var/lib/container/gluu_server_vip_4.0
-rm -rf /opt/gluu-server-vip-4.0
+rm -rf /opt/gluu-server-vip
 
 %files
 %{gluu_root}/*
