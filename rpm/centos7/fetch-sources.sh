@@ -27,8 +27,8 @@ if [ -n "${VER}" ]; then
     unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
     mv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
     rm -rf $COMMUNITY/community-edition-setup.zip
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/initd/gluu-server -O gluu-server-init-script
-    chmod +x gluu-server-init-script
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-serverd-4.0
+    chmod +x gluu-serverd-4.0
     wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DISTWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DISTWEB/passport-master-node_modules.tar.gz
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
