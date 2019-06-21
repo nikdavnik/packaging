@@ -53,9 +53,9 @@ else
   mkdir -p /etc/gluu/keys
 fi
 ssh-keygen -b 2048 -t rsa -f /etc/gluu/keys/gluu-console -q -N ""
-if [[ ! -d /opt/gluu-server-4.0/root/.ssh ]]; then
-  mkdir -p /opt/gluu-server-4.0/root/.ssh
-  chmod 700 /opt/gluu-server-4.0/root/.ssh
+if [[ ! -d /opt/gluu-server/root/.ssh ]]; then
+  mkdir -p /opt/gluu-server/root/.ssh
+  chmod 700 /opt/gluu-server/root/.ssh
 fi
 cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server/root/.ssh/authorized_keys
 chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
