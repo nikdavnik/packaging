@@ -13,6 +13,7 @@ rm -rf /opt/gluu-server/tmp/gluu-serverd-4.0
 # systemd unit file
 mkdir -p /lib/systemd/system/
 /bin/cp /opt/gluu-server/tmp/systemd-unitfile /lib/systemd/system/systemd-nspawn@gluu_server_4.0.service
+systemctl enable machines.target
 systemctl enable systemd-nspawn@gluu_server_4.0.service
 rm -rf /opt/gluu-server/tmp/systemd-unitfile
 
