@@ -60,6 +60,7 @@ fi
 cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server/root/.ssh/authorized_keys
 chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
 cp -a /etc/resolv.conf /opt/gluu-server/etc/
+systemctl enable machines.target
 systemctl enable systemd-nspawn@gluu_server_4.0.service
 
 %preun
