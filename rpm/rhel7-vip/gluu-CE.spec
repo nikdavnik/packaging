@@ -76,6 +76,7 @@ fi
 echo "Your changes will be saved into %{gluu_root}.rpm.saved"
 rm -rf /etc/gluu/keys
 unlink /var/lib/container/gluu_server_vip_4.0
+rm -rf /var/lib/container/gluu_server_vip_4.0
 rm -rf /opt/gluu-server-vip
 
 %files
