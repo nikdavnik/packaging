@@ -23,7 +23,7 @@ if [ -n "${VER}" ]; then
     unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
     mv -nv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
     rm -rf $COMMUNITY/community-edition-setup.zip
-    wget https://ox.gluu.org/npm/passport/passport-4.0.tgz -O $DIRWEB/passport.tgz
+    wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DIRWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-$INSTALL-node_modules.tar.gz -O $DIRWEB/passport-$INSTALL-node_modules.tar.gz
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server/tmp/gluu-serverd-4.0
     chmod +x gluu-server.amd64/gluu-server/tmp/gluu-serverd-4.0
