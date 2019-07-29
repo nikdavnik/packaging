@@ -31,7 +31,7 @@ if [ -n "${VER}" ]; then
     chmod +x gluu-serverd-4.0
     sed -i "s/gluu-server/gluu-server-vip/g" gluu-serverd-4.0
     sed -i "s/gluu_server/gluu_server_vip/g" gluu-serverd-4.0
-    wget https://ox.gluu.org/npm/passport/passport-4.0.tgz -O $DISTWEB/passport.tgz
+    wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DISTWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-$INSTALL-node_modules.tar.gz -O $DISTWEB/passport-$INSTALL-node_modules.tar.gz
 
     mkdir -p gluu-server-vip-4.0/opt/couchbase/
