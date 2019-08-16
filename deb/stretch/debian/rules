@@ -11,7 +11,7 @@
 
 override_dh_install:
 	dh_install
-	find ./debian/gluu-server-4.0 -name "*.gitignore" -delete
+	find ./debian/gluu-server -name "*.gitignore" -delete
 
 override_dh_perl:
 override_dh_link:
@@ -22,9 +22,9 @@ override_dh_shlibdeps:
 override_dh_strip_nondeterminism:
 override_dh_fixperms:
 	dh_fixperms
-	chmod 544 ./debian/gluu-server-4.0/opt/gluu-server/tmp/system_user.list
-	chmod 544 ./debian/gluu-server-4.0/opt/gluu-server/tmp/system_group.list
-#	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/klibc-P2s_k-gf23VtrGgO2_4pGkQgwMY.so
-	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/ld-2.24.so
-	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/libc-2.24.so
-	chmod 755 ./debian/gluu-server-4.0/opt/gluu-server/lib/x86_64-linux-gnu/libpthread-2.24.so
+	chmod 544 ./debian/gluu-server/opt/gluu-server/tmp/system_user.list
+	chmod 544 ./debian/gluu-server/opt/gluu-server/tmp/system_group.list
+#	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/klibc-P2s_k-gf23VtrGgO2_4pGkQgwMY.so
+	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/ld-2.24.so
+	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/libc-2.24.so
+	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/libpthread-2.24.so
