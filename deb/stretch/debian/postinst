@@ -5,16 +5,16 @@ set -e
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
 
-# gluu-serverd-4.0
+# gluu-serverd
 mkdir -p /sbin/
-/bin/cp /opt/gluu-server/tmp/gluu-serverd-4.0 /sbin/
-rm -rf /opt/gluu-server/tmp/gluu-serverd-4.0
+/bin/cp /opt/gluu-server/tmp/gluu-serverd /sbin/
+rm -rf /opt/gluu-server/tmp/gluu-serverd
 
 # systemd unit file
 mkdir -p /lib/systemd/system/
-/bin/cp /opt/gluu-server/tmp/systemd-unitfile /lib/systemd/system/systemd-nspawn@gluu_server_4.0.service
+/bin/cp /opt/gluu-server/tmp/systemd-unitfile /lib/systemd/system/systemd-nspawn@gluu_server.service
 systemctl enable machines.target
-systemctl enable systemd-nspawn@gluu_server_4.0.service
+systemctl enable systemd-nspawn@gluu_server.service
 rm -rf /opt/gluu-server/tmp/systemd-unitfile
 
 sed -i 's/.*Storage.*/Storage=persistent/g' /etc/systemd/journald.conf
@@ -22,7 +22,7 @@ systemctl restart systemd-journald
 if [[ ! -d /var/lib/container ]]; then
   mkdir -p /var/lib/container
 fi
-ln -s /opt/gluu-server /var/lib/container/gluu_server_4.0
+ln -s /opt/gluu-server /var/lib/container/gluu_server
 
 if [[ -d /etc/gluu/keys ]]; then
   rm -rf /etc/gluu/keys
@@ -40,7 +40,7 @@ chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
 chmod 400 /opt/gluu-server/etc/ssh/ssh_host_rsa_key
 chmod 400 /opt/gluu-server/etc/ssh/ssh_host_ecdsa_key
 chmod 400 /opt/gluu-server/etc/ssh/ssh_host_ed25519_key
-chmod 755 /sbin/gluu-serverd-4.0
+chmod 755 /sbin/gluu-serverd
 
 /bin/cp /etc/resolv.conf /opt/gluu-server/etc/ > /dev/null 2>&1
 
