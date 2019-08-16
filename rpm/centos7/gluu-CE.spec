@@ -1,7 +1,7 @@
 %global __os_install_post %{nil}
 %define gluu_root /opt/gluu-server
 
-Name: gluu-server-4.0
+Name: gluu-server
 Version: 1
 Release: 1.centos7
 Summary: Gluu Server
@@ -10,7 +10,7 @@ License: MIT
 Vendor: Gluu, Inc.
 Packager: Gluu support <support@gluu.org>
 Source0: gluu-server.tar.gz
-Source1: gluu-serverd-4.0
+Source1: gluu-serverd
 Source2: systemd-unitfile
 AutoReqProv: no
 Requires: tar, sed, openssh, coreutils >= 8.22-12, systemd >= 208-20, initscripts >= 9.49.24-1
@@ -27,12 +27,12 @@ touch "%{buildroot}%{gluu_root}/tmp/system_group.list"
 chmod 4777 "%{buildroot}%{gluu_root}/tmp"  
 chmod 0755 "%{buildroot}%{gluu_root}/tmp/system_user.list" 
 chmod 0755 "%{buildroot}%{gluu_root}/tmp/system_group.list"
-# gluu-serverd-4.0
+# gluu-serverd
 mkdir -p %{buildroot}/sbin/
 /bin/cp %{SOURCE1} %{buildroot}/sbin/
 # systemd unit file
 mkdir -p %{buildroot}/lib/systemd/system/
-/bin/cp %{SOURCE2} %{buildroot}/lib/systemd/system/systemd-nspawn@gluu_server_4.0.service
+/bin/cp %{SOURCE2} %{buildroot}/lib/systemd/system/systemd-nspawn@gluu_server.service
 
 %post
 /usr/sbin/chroot %{gluu_root} bash -c '
@@ -45,7 +45,7 @@ systemctl restart systemd-journald
 if [[ ! -d /var/lib/container ]]; then
   mkdir -p /var/lib/container
 fi
-ln -s %{gluu_root} /var/lib/container/gluu_server_4.0
+ln -s %{gluu_root} /var/lib/container/gluu_server
 if [[ -d /etc/gluu/keys ]]; then
   rm -rf /etc/gluu/keys
   mkdir -p /etc/gluu/keys
@@ -61,11 +61,11 @@ cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server/root/.ssh/authorized_keys
 chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
 cp -a /etc/resolv.conf /opt/gluu-server/etc/
 systemctl enable machines.target
-systemctl enable systemd-nspawn@gluu_server_4.0.service
+systemctl enable systemd-nspawn@gluu_server.service
 
 %preun
 echo "Stopping Gluu Server ..."
-systemctl stop systemd-nspawn@gluu_server_4.0.service
+systemctl stop systemd-nspawn@gluu_server.service
 
 %postun
 if [ -d %{gluu_root}.rpm.saved ] ; then
@@ -74,14 +74,14 @@ fi
 /bin/mv %{gluu_root} %{gluu_root}.rpm.saved
 echo "Your changes will be saved into %{gluu_root}.rpm.saved"
 rm -rf /etc/gluu/keys
-unlink /var/lib/container/gluu_server_4.0
-rm -rf /var/lib/container/gluu_server_4.0
+unlink /var/lib/container/gluu_server
+rm -rf /var/lib/container/gluu_server
 rm -rf /opt/gluu-server
 
 %files
 %{gluu_root}/*
-%attr(755,root,root) /sbin/gluu-serverd-4.0
-/lib/systemd/system/systemd-nspawn@gluu_server_4.0.service
+%attr(755,root,root) /sbin/gluu-serverd
+/lib/systemd/system/systemd-nspawn@gluu_server.service
 
 %clean
 rm -rf %{buildroot}
