@@ -6,8 +6,8 @@ echo "Checking to make sure Gluu Server is down..."
 
 case $1 in
     remove)
-        if [ -f /sbin/gluu-serverd-4.0 ]; then
-            /sbin/gluu-serverd-4.0 stop
+        if [ -f /sbin/gluu-serverd ]; then
+            /sbin/gluu-serverd stop
         fi
         if [ -d /opt/gluu-server.save ] ; then
             rm -rf /opt/gluu-server.save
@@ -19,8 +19,8 @@ case $1 in
         exit 0
         ;;
     deconfigure|upgrade)
-        if [ -f /sbin/gluu-serverd-4.0 ]; then
-                /sbin/gluu-serverd-4.0 stop
+        if [ -f /sbin/gluu-serverd ]; then
+                /sbin/gluu-serverd stop
         fi
         exit 0
         ;;
