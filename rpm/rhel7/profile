@@ -77,7 +77,7 @@ done
 unset i
 unset -f pathmunge
 ###################################################################################################
-# Added by Gluu to prevent login into chroot container without starting gluu-server-4.0 service   #
+# Added by Gluu to prevent login into chroot container without starting gluu-server service   #
 ###################################################################################################
 export JAVA_HOME=/usr/java/latest/
 export OPENDJ_JAVA_HOME=${JAVA_HOME}
