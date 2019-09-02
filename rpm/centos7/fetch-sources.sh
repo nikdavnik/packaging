@@ -22,11 +22,15 @@ if [ -n "${VER}" ]; then
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethStatic/$VER/oxShibbolethStatic-$VER.jar -O $DISTWEB/shibboleth-idp.jar
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DISTWEB/idp3_cml_keygenerator.jar
 #   wget -nv http://ox.gluu.org/maven/org/gluu/credmgr/credmgr/$VER/credmgr-$VER.war -O $DISTWEB/credmgr.war
-    rm -rf $COMMUNITY/community-edition-setup*
-    curl -LkSs https://codeload.github.com/GluuFederation/community-edition-setup/zip/$INSTALL -o $COMMUNITY/community-edition-setup.zip
-    unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
-    mv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
-    rm -rf $COMMUNITY/community-edition-setup.zip
+
+    #rm -rf $COMMUNITY/community-edition-setup*
+    #curl -LkSs https://codeload.github.com/GluuFederation/community-edition-setup/zip/$INSTALL -o $COMMUNITY/community-edition-setup.zip
+    #unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
+    #mv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
+    #rm -rf $COMMUNITY/community-edition-setup.zip
+    wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $COMMUNITY/community-edition-setup.zip
+    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server/opt/gluu/bin/
+    
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-serverd
     chmod +x gluu-serverd
     wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DISTWEB/passport.tgz
