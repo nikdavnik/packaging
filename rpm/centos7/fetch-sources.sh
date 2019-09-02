@@ -29,7 +29,7 @@ if [ -n "${VER}" ]; then
     #mv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
     #rm -rf $COMMUNITY/community-edition-setup.zip
     wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $COMMUNITY/community-edition-setup.zip
-    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server/opt/gluu/bin/
+    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server/opt/gluu/bin/install.py
     
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-serverd
     chmod +x gluu-serverd
