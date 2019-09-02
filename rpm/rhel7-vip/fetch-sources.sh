@@ -28,8 +28,9 @@ if [ -n "${VER}" ]; then
     #unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
     #mv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
     #rm -rf $COMMUNITY/community-edition-setup.zip
-    wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $COMMUNITY/community-edition-setup.zip
+    wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $DISTWEB/community-edition-setup.zip
     wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server/opt/gluu/bin/install.py
+    chmod +x gluu-server/opt/gluu/bin/install.py
 
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-serverd-4.0
     chmod +x gluu-serverd-4.0
