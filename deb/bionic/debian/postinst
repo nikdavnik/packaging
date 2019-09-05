@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "* $1 * $2 * $3"
 set -e
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
