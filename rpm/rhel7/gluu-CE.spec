@@ -62,6 +62,16 @@ chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
 cp -a /etc/resolv.conf /opt/gluu-server/etc/
 systemctl enable machines.target
 systemctl enable systemd-nspawn@gluu_server.service
+# Running setup on package installation
+if [ $1 == 1 ]; then
+  echo "Starting gluu-server ..."
+  sleep 1
+  gluu-serverd start
+  sleep 4
+  ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
+                -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+                -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
+fi
 
 %preun
 echo "Stopping Gluu Server ..."
