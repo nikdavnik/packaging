@@ -21,8 +21,7 @@ if [ "$1" = "configure" ]; then
     echo "Starting gluu-server ..."
     sleep 1
     /etc/init.d/gluu-server start
-    echo "Running setup ..."
-    sleep 1
+    sleep 4
     /etc/init.d/gluu-server login && /opt/gluu/bin/install.py && exit 0
   fi
 fi
