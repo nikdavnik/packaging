@@ -1,6 +1,11 @@
 #!/bin/bash
-
 set -e
+
+# Setting package version
+VERSION='%VERSION%'
+RUN_VERSION=$2
+ARG=$1
+
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
@@ -43,5 +48,18 @@ chmod 400 /opt/gluu-server/etc/ssh/ssh_host_ed25519_key
 chmod 755 /sbin/gluu-serverd
 
 /bin/cp /etc/resolv.conf /opt/gluu-server/etc/ > /dev/null 2>&1
+
+if [ "$1" = "configure" ]; then
+  if [ -z "$RUN_VERSION" ] || [ "$RUN_VERSION" = "$VERSION" ]; then
+    echo "Starting gluu-server ..."
+    sleep 1
+    gluu-serverd start
+    echo "Running setup ..."
+    sleep 1
+    ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
+                -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+                -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
+  fi
+fi
 
 exit 0
