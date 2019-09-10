@@ -22,7 +22,7 @@ if [ "$1" = "configure" ]; then
     sleep 1
     /etc/init.d/gluu-server start
     sleep 4
-    /etc/init.d/gluu-server login && /opt/gluu/bin/install.py && exit 0
+    /usr/sbin/chroot /opt/gluu-server su - root -c '/opt/gluu/bin/install.py'
   fi
 fi
  
