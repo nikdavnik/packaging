@@ -67,12 +67,16 @@ if [ "$1" = "configure" ]; then
       useradd ldap -d /home/ldap
       useradd jetty -d /home/jetty
       useradd node -d /home/node
+      useradd radius -d /opt/gluu/radius
       groupadd gluu
       gpasswd -a ldap gluu
       gpasswd -a node gluu
       gpasswd -a jetty gluu
-      chown -R jetty:gluu /opt/
-      chwon -R ldap:gluu /opt/opendj
+      gpasswd -a radius gluu
+      chown -R jetty:jetty /opt/jetty*
+      chown -R jetty:jetty /opt/shibboleth-idp
+      chown -R ldap:ldap /opt/opendj
+      chown -R node:node /opt/node*
       systemctl restart opendj
       systemctl restart idp
       systemctl restart identity
