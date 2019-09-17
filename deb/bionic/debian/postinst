@@ -58,6 +58,26 @@ if [ "$1" = "configure" ]; then
     ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
+    rm -rf /etc/hosts
+    rm -rf /etc/hostname
+    mv /etc/hosts.orig /etc/hosts
+    mv /etc/hostname.orig /etc/hostname
+  else
+    if [ -n "$RUN_VERSION" ] && [ "$RUN_VERSION" != "$VERSION" ]; then
+      useradd ldap -d /home/ldap
+      useradd jetty -d /home/jetty
+      useradd node -d /home/node
+      groupadd gluu
+      gpasswd -a ldap gluu
+      gpasswd -a node gluu
+      gpasswd -a jetty gluu
+      chown -R jetty:gluu /opt/
+      chwon -R ldap:gluu /opt/opendj
+      systemctl restart opendj
+      systemctl restart idp
+      systemctl restart identity
+      systemctl restart oxauth
+    fi
   fi
 fi
 
