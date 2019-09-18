@@ -60,8 +60,8 @@ if [ "$1" = "configure" ]; then
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
     rm -rf /opt/gluu-server/etc/hosts
     rm -rf /opt/gluu-server/etc/hostname
-    mv /opt/gluu-server/etc/hosts.orig /opt/gluu-server/etc/hosts
-    mv /opt/gluu-server/etc/hostname.orig /opt/gluu-server/etc/hostname
+    mv /opt/gluu-server/etc/hosts.original /opt/gluu-server/etc/hosts
+    mv /opt/gluu-server/etc/hostname.original /opt/gluu-server/etc/hostname
   else
     if [ -n "$RUN_VERSION" ] && [ "$RUN_VERSION" != "$VERSION" ]; then
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd ldap -d /home/ldap'
