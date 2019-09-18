@@ -58,29 +58,29 @@ if [ "$1" = "configure" ]; then
     ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
-    rm -rf /etc/hosts
-    rm -rf /etc/hostname
-    mv /etc/hosts.orig /etc/hosts
-    mv /etc/hostname.orig /etc/hostname
+    rm -rf /opt/gluu-server/etc/hosts
+    rm -rf /opt/gluu-server/etc/hostname
+    mv /opt/gluu-server/etc/hosts.orig /opt/gluu-server/etc/hosts
+    mv /opt/gluu-server/etc/hostname.orig /opt/gluu-server/etc/hostname
   else
     if [ -n "$RUN_VERSION" ] && [ "$RUN_VERSION" != "$VERSION" ]; then
-      useradd ldap -d /home/ldap
-      useradd jetty -d /home/jetty
-      useradd node -d /home/node
-      useradd radius -d /opt/gluu/radius
-      groupadd gluu
-      gpasswd -a ldap gluu
-      gpasswd -a node gluu
-      gpasswd -a jetty gluu
-      gpasswd -a radius gluu
-      chown -R jetty:jetty /opt/jetty*
-      chown -R jetty:jetty /opt/shibboleth-idp
-      chown -R ldap:ldap /opt/opendj
-      chown -R node:node /opt/node*
-      systemctl restart opendj
-      systemctl restart idp
-      systemctl restart identity
-      systemctl restart oxauth
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd ldap -d /home/ldap'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd jetty -d /home/jetty'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd node -d /home/node'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd radius -d /opt/gluu/radius'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'groupadd gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a node gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a jetty gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a radius gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/jetty*'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/shibboleth-idp'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R ldap:ldap /opt/opendj'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/node*'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart opendj'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart idp'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart identity'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart oxauth'
     fi
   fi
 fi
