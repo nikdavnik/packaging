@@ -74,13 +74,17 @@ if [ "$1" = "configure" ]; then
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a jetty gluu'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a radius gluu'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/jetty*'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/gluu/jetty'      
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/shibboleth-idp'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R ldap:ldap /opt/opendj'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/node*'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart opendj'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart idp'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart identity'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart oxauth'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/gluu/node'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R radius:ldap /opt/gluu/radius'
+      /sbin/gluu-serverd start
+      sleep 5
+      ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
+                -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+                -o PubkeyAuthentication=yes root@localhost 'systemctl restart opendj ; systemctl restart idp; systemctl restart identity; systemctl restart oxauth' 
     fi
   fi
 fi
