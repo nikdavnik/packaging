@@ -76,6 +76,8 @@ if [ "$1" = "configure" ]; then
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/jetty*'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/gluu/jetty'      
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/shibboleth-idp'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R root:gluu /etc/certs'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /etc/certs/oxauth-keys.jks'      
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R ldap:ldap /opt/opendj'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/node*'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/gluu/node'
