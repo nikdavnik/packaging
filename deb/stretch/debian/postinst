@@ -9,6 +9,7 @@ ARG=$1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
+/usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R man /var/cache/man' > /dev/null 2>&1
 
 # gluu-serverd
 mkdir -p /sbin/
@@ -58,6 +59,36 @@ if [ "$1" = "configure" ]; then
     ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
+    rm -rf /opt/gluu-server/etc/hosts
+    rm -rf /opt/gluu-server/etc/hostname
+    mv /opt/gluu-server/etc/hosts.original /opt/gluu-server/etc/hosts
+    mv /opt/gluu-server/etc/hostname.original /opt/gluu-server/etc/hostname
+  else
+    if [ -n "$RUN_VERSION" ] && [ "$RUN_VERSION" != "$VERSION" ]; then
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd ldap -d /home/ldap'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd jetty -d /home/jetty'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd node -d /home/node'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd radius -d /opt/gluu/radius'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'groupadd gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a node gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a jetty gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a radius gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/jetty*'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/gluu/jetty'      
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/shibboleth-idp'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R root:gluu /etc/certs'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /etc/certs/oxauth-keys.jks'      
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R ldap:ldap /opt/opendj'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/node*'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/gluu/node'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R radius:ldap /opt/gluu/radius'
+      /sbin/gluu-serverd start
+      sleep 5
+      ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
+                -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+                -o PubkeyAuthentication=yes root@localhost 'systemctl restart opendj ; systemctl restart idp ; systemctl restart identity ; systemctl restart oxauth' 
+    fi
   fi
 fi
 
