@@ -21,9 +21,37 @@ if [ "$1" = "configure" ]; then
     echo "Starting gluu-server ..."
     sleep 1
     /etc/init.d/gluu-server start
-    sleep 4
-    /usr/sbin/chroot /opt/gluu-server su - root -c '/opt/gluu/bin/install.py'
+    sleep 5
+    /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/opt/gluu/bin/install.py'
+    rm -rf /opt/gluu-server/etc/hosts
+    rm -rf /opt/gluu-server/etc/hostname
+    mv /opt/gluu-server/etc/hosts.original /opt/gluu-server/etc/hosts
+    mv /opt/gluu-server/etc/hostname.original /opt/gluu-server/etc/hostname
+  else
+    if [ -n "$RUN_VERSION" ] && [ "$RUN_VERSION" != "$VERSION" ]; then
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd ldap -d /home/ldap'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd jetty -d /home/jetty'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd node -d /home/node'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd radius -d /opt/gluu/radius'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'groupadd gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a node gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a jetty gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a radius gluu'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/jetty*'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/gluu/jetty'      
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /opt/shibboleth-idp'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R root:gluu /etc/certs'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R jetty:jetty /etc/certs/oxauth-keys.jks'      
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R ldap:ldap /opt/opendj'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/node*'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R node:node /opt/gluu/node'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R radius:ldap /opt/gluu/radius'
+      /etc/init.d/gluu-server start
+      sleep 5
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'systemctl restart opendj ; systemctl restart idp; systemctl restart identity; systemctl restart oxauth' 
+    fi
   fi
 fi
- 
+
 exit 0
