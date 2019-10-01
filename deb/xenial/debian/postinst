@@ -57,8 +57,8 @@ if [ "$1" = "configure" ]; then
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown jetty:jetty /home/jetty'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 644 /etc/profile'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod ga+w /tmp'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown root:gluu /var/gluu/
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 755 /var/gluu/ 
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown root:gluu /var/gluu/'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 755 /var/gluu/'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown root:gluu /var/gluu/photos'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 775 /var/gluu/photos'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R root:gluu /var/gluu/identity'
