@@ -67,24 +67,30 @@ if [ $1 == 1 ]; then
   echo "Starting gluu-server ..."
   sleep 1
   gluu-serverd start
-  sleep 4
+  sleep 5
   ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
+  if [ -e /opt/gluu-server/etc/hosts.original ] && [ -e /opt/gluu-server/etc/hostname.original ]; then               
+    rm -rf /opt/gluu-server/etc/hosts
+    rm -rf /opt/gluu-server/etc/hostname
+    mv /opt/gluu-server/etc/hosts.original /opt/gluu-server/etc/hosts
+    mv /opt/gluu-server/etc/hostname.original /opt/gluu-server/etc/hostname
+  fi  
 fi
 # Package is being updated
 if [ $1 == 2 ]; then
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd ldap -d /home/ldap > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd jetty -d /home/jetty > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd node -d /home/node > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd radius -d /opt/gluu/radius > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'groupadd gluu > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap gluu > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a node gluu > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a jetty gluu > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap adm > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a radius gluu > /dev/null'
-      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap adm > /dev/null'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd ldap -d /home/ldap > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd jetty -d /home/jetty > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd node -d /home/node > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd radius -d /opt/gluu/radius > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'groupadd gluu > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap gluu > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a node gluu > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a jetty gluu > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap adm > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a radius gluu > /dev/null 2>&1'
+      /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap adm > /dev/null 2>&1'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/jetty ] && chown -R jetty:jetty /opt/jetty* || exit 0'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/gluu/jetty ] && chown -R jetty:jetty /opt/gluu/jetty || exit 0'
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/gluu/jetty ] && chmod -R 755 /opt/gluu/jetty || exit 0'
@@ -179,6 +185,7 @@ if [ $1 == 2 ]; then
       /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/gluu-radius.private-key.pem ] && chmod 660 /etc/certs/gluu-radius.private-key.pem || exit 0'
       /sbin/gluu-serverd stop
       /sbin/gluu-serverd start
+      sleep 30
 fi
 
 %preun
