@@ -46,6 +46,7 @@ chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
 chmod 400 /opt/gluu-server/etc/ssh/ssh_host_rsa_key
 chmod 400 /opt/gluu-server/etc/ssh/ssh_host_ecdsa_key
 chmod 400 /opt/gluu-server/etc/ssh/ssh_host_ed25519_key
+chmod 755 /sbin/gluu-serverd
 
 /bin/cp /etc/resolv.conf /opt/gluu-server/etc/ > /dev/null 2>&1
 
