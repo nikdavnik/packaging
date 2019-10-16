@@ -76,6 +76,7 @@ if [ $1 == 1 ]; then
     rm -rf /opt/gluu-server/etc/hostname
     mv /opt/gluu-server/etc/hosts.original /opt/gluu-server/etc/hosts
     mv /opt/gluu-server/etc/hostname.original /opt/gluu-server/etc/hostname
+    mv /opt/gluu-server/etc/httpd/conf/httpd.conf.original /opt/gluu-server/etc/httpd/conf/httpd.conf
   fi  
 fi
 # Package is being updated
