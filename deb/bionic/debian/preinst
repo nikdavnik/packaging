@@ -2,17 +2,17 @@
 set -e
 
 if [ "$1" = "upgrade" ]; then
-    [ -e /opt/gluu-server/etc/passwd ] && cp /opt/gluu-server/etc/passwd /opt/gluu-server/etc/passwd_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/passwd- ] && cp /opt/gluu-server/etc/passwd- /opt/gluu-server/etc/passwd-_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/group ] && cp /opt/gluu-server/etc/group /opt/gluu-server/etc/group_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/group- ] && cp /opt/gluu-server/etc/group- /opt/gluu-server/etc/group-_upgrade || exit 0 
-    [ -e /opt/gluu-server/etc/shadow ] && cp /opt/gluu-server/etc/shadow /opt/gluu-server/etc/shadow_upgrade || exit 0 
-    [ -e /opt/gluu-server/etc/shadow- ] && cp /opt/gluu-server/etc/shadow- /opt/gluu-server/etc/shadow-_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/gshadow ] && cp /opt/gluu-server/etc/gshadow /opt/gluu-server/etc/gshadow_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/gshadow- ] && cp /opt/gluu-server/etc/gshadow- /opt/gluu-server/etc/gshadow-_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/hostname ] && cp /opt/gluu-server/etc/hostname  /opt/gluu-server/etc/hostname_upgrade || exit 0  
-    [ -e /opt/gluu-server/etc/hosts ] && cp /opt/gluu-server/etc/hosts /opt/gluu-server/etc/hosts_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/profile ] && cp /opt/gluu-server/etc/profile /opt/gluu-server/etc/profile_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/security/limits.conf ] && cp /opt/gluu-server/etc/security/limits.conf /opt/gluu-server/etc/security/limits.conf_upgrade || exit 0
-    [ -e /opt/gluu-server/etc/sysconfig/network ] && cp /opt/gluu-server/etc/sysconfig/network /opt/gluu-server/etc/sysconfig/network_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/passwd ] && cp -rp /opt/gluu-server/etc/passwd /opt/gluu-server/etc/passwd_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/passwd- ] && cp -rp /opt/gluu-server/etc/passwd- /opt/gluu-server/etc/passwd-_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/group ] && cp -rp /opt/gluu-server/etc/group /opt/gluu-server/etc/group_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/group- ] && cp -rp /opt/gluu-server/etc/group- /opt/gluu-server/etc/group-_upgrade || exit 0 
+    [ -e /opt/gluu-server/etc/shadow ] && cp -rp /opt/gluu-server/etc/shadow /opt/gluu-server/etc/shadow_upgrade || exit 0 
+    [ -e /opt/gluu-server/etc/shadow- ] && cp -rp /opt/gluu-server/etc/shadow- /opt/gluu-server/etc/shadow-_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/gshadow ] && cp -rp /opt/gluu-server/etc/gshadow /opt/gluu-server/etc/gshadow_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/gshadow- ] && cp -rp /opt/gluu-server/etc/gshadow- /opt/gluu-server/etc/gshadow-_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/hostname ] && cp -rp /opt/gluu-server/etc/hostname  /opt/gluu-server/etc/hostname_upgrade || exit 0  
+    [ -e /opt/gluu-server/etc/hosts ] && cp -rp /opt/gluu-server/etc/hosts /opt/gluu-server/etc/hosts_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/profile ] && cp -rp /opt/gluu-server/etc/profile /opt/gluu-server/etc/profile_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/security/limits.conf ] && cp -rp /opt/gluu-server/etc/security/limits.conf /opt/gluu-server/etc/security/limits.conf_upgrade || exit 0
+    [ -e /opt/gluu-server/etc/sysconfig/network ] && cp -rp /opt/gluu-server/etc/sysconfig/network /opt/gluu-server/etc/sysconfig/network_upgrade || exit 0
 fi
