@@ -73,7 +73,6 @@ if [ "$1" = "configure" ]; then
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/hostname ] && chmod 644 /etc/hostname || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/hosts ] && chmod 644 /etc/hosts || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /home/ldap/.pw ] && chown ldap:ldap /home/ldap/.pw || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs ] && chown root:gluu /etc/certs || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/gluu/conf ] && chown root:gluu /etc/gluu/conf || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/init.d/opendj ] && chmod +x /etc/init.d/opendj || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/default/oxauth ] && chown root:root /etc/default/oxauth || exit 0'
