@@ -96,18 +96,12 @@ if [ "$1" = "configure" ]; then
         /etc/init.d/gluu-server start 
         sleep 30
       else
-        if [ -z "$(ls -A /opt/gluu-server/install/community-edition-setup)" ] && [ ! -e /opt/gluu-server/etc/hosts ]; then
+        if [ -z "$(ls -A /opt/gluu-server/install/community-edition-setup)" ]; then
           echo "Starting gluu-server ..."
           sleep 1
           /etc/init.d/gluu-server start
           sleep 5
           /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/opt/gluu/bin/install.py'
-          if [ -e /opt/gluu-server/etc/hosts.original ] && [ -e /opt/gluu-server/etc/hostname.original ]; then                               
-            rm -rf /opt/gluu-server/etc/hosts
-            rm -rf /opt/gluu-server/etc/hostname
-            mv /opt/gluu-server/etc/hosts.original /opt/gluu-server/etc/hosts
-            mv /opt/gluu-server/etc/hostname.original /opt/gluu-server/etc/hostname
-          fi
         fi  
       fi 
     fi
