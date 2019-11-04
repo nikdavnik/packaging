@@ -34,6 +34,25 @@ mkdir -p %{buildroot}/usr/sbin/
 mkdir -p %{buildroot}/lib/systemd/system/
 /bin/cp %{SOURCE2} %{buildroot}/lib/systemd/system/systemd-nspawn@gluu_server.service
 
+%pre
+# Package is being updated
+if [ $1 == 2 ]; then
+    [ -e /opt/gluu-server/etc/passwd ] && cp -rp /opt/gluu-server/etc/passwd /opt/gluu-server/etc/passwd_upgrade || true
+    [ -e /opt/gluu-server/etc/passwd- ] && cp -rp /opt/gluu-server/etc/passwd- /opt/gluu-server/etc/passwd-_upgrade || true
+    [ -e /opt/gluu-server/etc/group ] && cp -rp /opt/gluu-server/etc/group /opt/gluu-server/etc/group_upgrade || true
+    [ -e /opt/gluu-server/etc/group- ] && cp -rp /opt/gluu-server/etc/group- /opt/gluu-server/etc/group-_upgrade || true 
+    [ -e /opt/gluu-server/etc/shadow ] && cp -rp /opt/gluu-server/etc/shadow /opt/gluu-server/etc/shadow_upgrade || true
+    [ -e /opt/gluu-server/etc/shadow- ] && cp -rp /opt/gluu-server/etc/shadow- /opt/gluu-server/etc/shadow-_upgrade || true
+    [ -e /opt/gluu-server/etc/gshadow ] && cp -rp /opt/gluu-server/etc/gshadow /opt/gluu-server/etc/gshadow_upgrade || true
+    [ -e /opt/gluu-server/etc/gshadow- ] && cp -rp /opt/gluu-server/etc/gshadow- /opt/gluu-server/etc/gshadow-_upgrade || true
+    [ -e /opt/gluu-server/etc/hostname ] && cp -rp /opt/gluu-server/etc/hostname  /opt/gluu-server/etc/hostname_upgrade || true  
+    [ -e /opt/gluu-server/etc/hosts ] && cp -rp /opt/gluu-server/etc/hosts /opt/gluu-server/etc/hosts_upgrade || true
+    [ -e /opt/gluu-server/etc/profile ] && cp -rp /opt/gluu-server/etc/profile /opt/gluu-server/etc/profile_upgrade || true
+    [ -e /opt/gluu-server/etc/security/limits.conf ] && cp -rp /opt/gluu-server/etc/security/limits.conf /opt/gluu-server/etc/security/limits.conf_upgrade || true
+    [ -e /opt/gluu-server/etc/sysconfig/network ] && cp -rp /opt/gluu-server/etc/sysconfig/network /opt/gluu-server/etc/sysconfig/network_upgrade || true
+    [ -e /opt/gluu-server/etc/httpd/conf/httpd.conf ] && cp -rp /opt/gluu-server/etc/httpd/conf/httpd.conf /opt/gluu-server/etc/httpd/conf/httpd.conf_upgrade || true
+fi
+
 %post
 /usr/sbin/chroot %{gluu_root} bash -c '
 /tmp/system_user.list &>/dev/null
@@ -71,28 +90,24 @@ if [ $1 == 1 ]; then
   ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
-  if [ -e /opt/gluu-server/etc/hosts.original ] && [ -e /opt/gluu-server/etc/hostname.original ]; then               
-    rm -rf /opt/gluu-server/etc/hosts
-    rm -rf /opt/gluu-server/etc/hostname
-    mv /opt/gluu-server/etc/hosts.original /opt/gluu-server/etc/hosts
-    mv /opt/gluu-server/etc/hostname.original /opt/gluu-server/etc/hostname
-    mv /opt/gluu-server/etc/httpd/conf/httpd.conf.original /opt/gluu-server/etc/httpd/conf/httpd.conf    
-  fi  
 fi
 # Package is being updated
 if [ $1 == 2 ]; then
       if [ -e /opt/gluu-server/etc/gluu/conf ]; then
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd ldap -d /home/ldap > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd jetty -d /home/jetty > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd node -d /home/node > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'useradd radius -d /opt/gluu/radius > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'groupadd gluu > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap gluu > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a node gluu > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a jetty gluu > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap adm > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a radius gluu > /dev/null 2>&1'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'gpasswd -a ldap adm > /dev/null 2>&1'
+        [ -e /opt/gluu-server/etc/passwd_upgrade ] && mv /opt/gluu-server/etc/passwd_upgrade /opt/gluu-server/etc/passwd || true
+        [ -e /opt/gluu-server/etc/passwd-_upgrade ] && mv /opt/gluu-server/etc/passwd-_upgrade /opt/gluu-server/etc/passwd- || true
+        [ -e /opt/gluu-server/etc/group_upgrade ] && mv /opt/gluu-server/etc/group_upgrade /opt/gluu-server/etc/group || true
+        [ -e /opt/gluu-server/etc/group-_upgrade ] && mv /opt/gluu-server/etc/group-_upgrade /opt/gluu-server/etc/group- || true 
+        [ -e /opt/gluu-server/etc/shadow_upgrade ] && mv /opt/gluu-server/etc/shadow_upgrade /opt/gluu-server/etc/shadow || true 
+        [ -e /opt/gluu-server/etc/shadow-_upgrade ] && mv /opt/gluu-server/etc/shadow-_upgrade /opt/gluu-server/etc/shadow- || true
+        [ -e /opt/gluu-server/etc/gshadow_upgrade ] && mv /opt/gluu-server/etc/gshadow_upgrade /opt/gluu-server/etc/gshadow || true
+        [ -e /opt/gluu-server/etc/gshadow-_upgrade ] && mv /opt/gluu-server/etc/gshadow-_upgrade /opt/gluu-server/etc/gshadow- || true
+        [ -e /opt/gluu-server/etc/hostname_upgrade ] && mv /opt/gluu-server/etc/hostname_upgrade /opt/gluu-server/etc/hostname || true  
+        [ -e /opt/gluu-server/etc/hosts_upgrade ] && mv /opt/gluu-server/etc/hosts_upgrade /opt/gluu-server/etc/hosts || true
+        [ -e /opt/gluu-server/etc/profile_upgrade ] && mv /opt/gluu-server/etc/profile_upgrade /opt/gluu-server/etc/profile || true
+        [ -e /opt/gluu-server/etc/security/limits.conf_upgrade ] && mv /opt/gluu-server/etc/security/limits.conf_upgrade /opt/gluu-server/etc/security/limits.conf || true
+        [ -e /opt/gluu-server/etc/sysconfig/network_upgrade ] && mv /opt/gluu-server/etc/sysconfig/network_upgrade /opt/gluu-server/etc/sysconfig/network || true       
+        [ -e /opt/gluu-server/etc/httpd/conf/httpd.conf_upgrade ] && mv /opt/gluu-server/etc/httpd/conf/httpd.conf_upgrade /opt/gluu-server/etc/httpd/conf/httpd.conf || true                       
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/jetty ] && chown -R jetty:jetty /opt/jetty* || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/gluu/jetty ] && chown -R jetty:jetty /opt/gluu/jetty || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/gluu/jetty ] && chmod -R 755 /opt/gluu/jetty || exit 0'
@@ -124,44 +139,12 @@ if [ $1 == 2 ]; then
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /var/run/jetty ] && chmod 775 /var/run/jetty || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /var/run/jetty ] && chmod 644 /var/run/jetty/* || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /var/run/radius ] && chmod 775 /var/run/radius || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/httpd.key.orig ] && chown jetty:jetty /etc/certs/httpd.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/httpd.key.orig ] && chmod 700 /etc/certs/httpd.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/httpd.key ] && chown jetty:jetty /etc/certs/httpd.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/httpd.key ] && chmod 700 /etc/certs/httpd.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.key.orig ] && chown jetty:jetty /etc/certs/shibIDP.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.key.orig ] && chmod 700 /etc/certs/shibIDP.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.key ] && chown jetty:jetty /etc/certs/shibIDP.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.key ] && chmod 700 /etc/certs/shibIDP.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-encryption.key.orig ] && chown jetty:jetty /etc/certs/idp-encryption.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-encryption.key.orig ] && chmod 700 /etc/certs/idp-encryption.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-encryption.key ] && chown jetty:jetty /etc/certs/idp-encryption.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-encryption.key ] && chmod 700 /etc/certs/idp-encryption.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-signing.key.orig ] && chown jetty:jetty /etc/certs/idp-signing.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-signing.key.orig ] && chmod 700 /etc/certs/idp-signing.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-signing.key ] && chown jetty:jetty /etc/certs/idp-signing.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/idp-signing.key ] && chmod 700 /etc/certs/idp-signing.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/passport-sp.key.orig ] && chown ldap:ldap /etc/certs/passport-sp.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/passport-sp.key.orig ] && chmod 700 /etc/certs/passport-sp.key.orig || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/passport-sp.key ] && chown ldap:ldap /etc/certs/passport-sp.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/passport-sp.key ] && chmod 700 /etc/certs/passport-sp.key || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.pkcs12 ] && chown jetty:jetty /etc/certs/shibIDP.pkcs12 || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.pkcs12 ] && chmod 700 /etc/certs/shibIDP.pkcs12 || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.jks ] && chown jetty:jetty /etc/certs/shibIDP.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/shibIDP.jks ] && chmod 700 /etc/certs/shibIDP.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs ] && chown jetty:jetty /etc/certs || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /install/community-edition-setup/output/oxauth-keys.json ] && chown jetty:jetty /install/community-edition-setup/output/oxauth-keys.json || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /install/community-edition-setup/output/oxauth-keys.json ] && chmod 500 /install/community-edition-setup/output/oxauth-keys.json || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/hostname ] && chmod 644 /etc/hostname || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/hosts ] && chmod 644 /etc/hosts || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /home/ldap/.pw ] && chown ldap:ldap /home/ldap/.pw || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs ] && chown root:gluu /etc/certs || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/gluu/conf ] && chown root:gluu /etc/gluu/conf || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs ] && chmod 440 /etc/certs || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs ] && chmod a+x /etc/certs || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/gluu-radius.jks ] && chown radius:gluu /etc/certs/gluu-radius.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/gluu-radius.private-key.pem ] && chown radius:gluu /etc/certs/gluu-radius.private-key.pem || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/oxauth-keys.jks ] && chown jetty:jetty /etc/certs/oxauth-keys.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/oxauth-keys.jks ] && chmod 660 /etc/certs/oxauth-keys.jks || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/init.d/opendj ] && chmod +x /etc/init.d/opendj || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/default/oxauth ] && chown root:root /etc/default/oxauth || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/init.d/oxauth ] && chmod +x /etc/init.d/oxauth || exit 0'
@@ -179,12 +162,6 @@ if [ $1 == 2 ]; then
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/init.d/passport ] && chmod +x /etc/init.d/passport || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/init.d/gluu-radius ] && chmod +x /etc/init.d/gluu-radius || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/gluu/conf/radius/ ] && chown root:gluu /etc/gluu/conf/radius/ || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/gluu-radius.jks ] && chown radius:gluu /etc/certs/gluu-radius.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/gluu-radius.private-key.pem ] && chown radius:gluu /etc/certs/gluu-radius.private-key.pem || exit 0' 
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/oxauth-keys.jks ] && chown radius:gluu /etc/certs/oxauth-keys.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/oxauth-keys.jks ] && chmod 660 /etc/certs/oxauth-keys.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/gluu-radius.jks ] && chmod 660 /etc/certs/gluu-radius.jks || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/gluu-radius.private-key.pem ] && chmod 660 /etc/certs/gluu-radius.private-key.pem || exit 0'
         /sbin/gluu-serverd stop
         /sbin/gluu-serverd start 
         sleep 30
