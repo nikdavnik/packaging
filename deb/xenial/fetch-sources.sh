@@ -34,4 +34,9 @@ if [ -n "${VER}" ]; then
     chmod +x gluu-server.amd64/debian/gluu-server.init.d    
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT.jar -O $DIRWEB/super-gluu-radius-server.jar
+    
+    # Update script
+    mkdir -p gluu-server.amd64/gluu-server/install/update
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0.x/update_4.0.1.py -O gluu-server.amd64/gluu-server/install/update/update_4.0.1.py
+    chmod +x gluu-server.amd64/gluu-server/install/update/update_4.0.1.py    
 fi
