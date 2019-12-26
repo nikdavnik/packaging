@@ -6,7 +6,7 @@ Version: 1
 Release: 1.rhel7
 Summary: Gluu Server
 Group: Gluu
-License: MIT
+License: Apache-2.0
 Vendor: Gluu, Inc.
 Packager: Gluu support <support@gluu.org>
 Source0: gluu-server.tar.gz
