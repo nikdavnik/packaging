@@ -28,12 +28,12 @@ if [ -n "${VER}" ]; then
     wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     chmod +x gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     
-    wget https://ox.gluu.org/npm/passport/passport-4.0.0.tgz -O $DIRWEB/passport.tgz
+    wget https://ox.gluu.org/npm/passport/passport-4.1.0.tgz -O $DIRWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-$INSTALL-node_modules.tar.gz -O $DIRWEB/passport-$INSTALL-node_modules.tar.gz
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server/tmp/gluu-serverd
     chmod +x gluu-server.amd64/gluu-server/tmp/gluu-serverd
-    wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
-    wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/4.0.0-SNAPSHOT/super-gluu-radius-server-4.0.0-SNAPSHOT.jar -O $DIRWEB/super-gluu-radius-server.jar
+    wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
+    wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER.jar -O $DIRWEB/super-gluu-radius-server.jar
   
     # systemd files for services
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server.amd64/gluu-server/lib/systemd/system/identity.service 
