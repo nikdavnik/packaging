@@ -2,7 +2,8 @@
 
 VER=$1
 INSTALL_VER=$2
-OXD_SOURCE=$3
+CASA_SOURCE=$3
+OXD_SOURCE=$4
 
 DIRWEB="gluu-server.amd64/gluu-server/opt/dist/gluu"
 COMMUNITY="gluu-server.amd64/gluu-server/install"
@@ -52,7 +53,7 @@ if [ -n "${VER}" ]; then
     chmod +x gluu-server.amd64/gluu-server/install/update/update_4.0.1.py
     
     # Casa files
-    wget https://ox.gluu.org/maven/org/gluu/casa/4.1.0.Final/casa-4.1.0.Final.war -O $DIRWEB/casa.war
+    wget https://ox.gluu.org/maven/org/gluu/casa/$CASA_SOURCE/casa-$CASA_SOURCE.war -O $DIRWEB/casa.war
     wget https://repo1.maven.org/maven2/com/twilio/sdk/twilio/7.17.0/twilio-7.17.0.jar -O $DIRWEB/twilio-7.17.0.jar
     wget https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar -O $DIRWEB/jsmpp-2.3.7.jar
     
