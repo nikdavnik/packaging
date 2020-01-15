@@ -75,15 +75,15 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O gluu-server.amd64/gluu-server/lib/systemd/system/casa.service
     
     # oxd files
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $OPT/oxd-sever/bin/lsox.sh
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $OPT/oxd-sever/bin/oxd-start.sh
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.sh -O $OPT/oxd-sever/bin/oxd-server.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $OPT/oxd-server/bin/lsox.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $OPT/oxd-server/bin/oxd-start.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.sh -O $OPT/oxd-server/bin/oxd-server.sh
     
-    wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $OPT/oxd-sever/conf/oxd-server.keystore
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $OPT/oxd-sever/conf/oxd-server.yml
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $OPT/oxd-sever/conf/swagger.yaml
+    wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $OPT/oxd-server/conf/oxd-server.keystore
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $OPT/oxd-server/conf/oxd-server.yml
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $OPT/oxd-server/conf/swagger.yaml
     
-    wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $OPT/oxd-sever/lib/oxd-server.jar
+    wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $OPT/oxd-server/lib/oxd-server.jar
     
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O gluu-server.amd64/gluu-server/lib/systemd/system/oxd-server.service
 fi
