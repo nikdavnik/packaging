@@ -2,6 +2,7 @@
 
 VER=$1
 INSTALL_VER=$2
+OXD_SOURCE=$3
 
 DIRWEB="gluu-server.amd64/gluu-server/opt/dist/gluu"
 COMMUNITY="gluu-server.amd64/gluu-server/install"
@@ -44,7 +45,6 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server.amd64/gluu-server/lib/systemd/system/oxauth.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server.amd64/gluu-server/lib/systemd/system/passport.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/idp.service -O gluu-server.amd64/gluu-server/lib/systemd/system/idp.service
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O gluu-server.amd64/gluu-server/lib/systemd/system/casa.service
     
     # Update script
     mkdir -p gluu-server.amd64/gluu-server/install/update
@@ -70,4 +70,19 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/installer/setup_casa.py -O $COMMUNITY/community-edition-setup/setup_casa.py
     
     wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs
+    
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O gluu-server.amd64/gluu-server/lib/systemd/system/casa.service
+    
+    # oxd files
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $OPT/oxd-sever/bin/lsox.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $OPT/oxd-sever/bin/oxd-start.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.sh -O $OPT/oxd-sever/bin/oxd-server.sh
+    
+    wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $OPT/oxd-sever/conf/oxd-server.keystore
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $OPT/oxd-sever/conf/oxd-server.yml
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $OPT/oxd-sever/conf/swagger.yaml
+    
+    wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $OPT/oxd-sever/lib/oxd-server.jar
+    
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O gluu-server.amd64/gluu-server/lib/systemd/system/oxd-server.service
 fi
