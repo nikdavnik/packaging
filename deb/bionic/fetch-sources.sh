@@ -5,6 +5,8 @@ INSTALL_VER=$2
 
 DIRWEB="gluu-server.amd64/gluu-server/opt/dist/gluu"
 COMMUNITY="gluu-server.amd64/gluu-server/install"
+OPT="gluu-server.amd64/gluu-server/opt"
+GLUU_ROOT="gluu-server.amd64/gluu-server"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
@@ -42,9 +44,30 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth.service -O gluu-server.amd64/gluu-server/lib/systemd/system/oxauth.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server.amd64/gluu-server/lib/systemd/system/passport.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/idp.service -O gluu-server.amd64/gluu-server/lib/systemd/system/idp.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O gluu-server.amd64/gluu-server/lib/systemd/system/casa.service
     
     # Update script
     mkdir -p gluu-server.amd64/gluu-server/install/update
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0.x/update_4.0.1.py -O gluu-server.amd64/gluu-server/install/update/update_4.0.1.py
     chmod +x gluu-server.amd64/gluu-server/install/update/update_4.0.1.py
+    
+    # Casa files
+    wget https://ox.gluu.org/maven/org/gluu/casa/4.1.0.Final/casa-4.1.0.Final.war -O $DIRWEB/casa.war
+    wget https://repo1.maven.org/maven2/com/twilio/sdk/twilio/7.17.0/twilio-7.17.0.jar -O $DIRWEB/twilio-7.17.0.jar
+    wget https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar -O $DIRWEB/jsmpp-2.3.7.jar
+    
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/plugins/account-linking/extras/casa.py -O $DIRWEB/casa-al/casa.py
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/plugins/account-linking/extras/casa.xhtml -O $DIRWEB/casa-al/casa.xhtml
+    
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_fido2.py -O $OPT/gluu/python/libs/casa-external_fido2.py
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_otp.py -O $OPT/gluu/python/libs/casa-external_otp.py
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_smpp.py -O $OPT/gluu/python/libs/casa-external_smpp.py
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_super_gluu.py -O $OPT/gluu/python/libs/casa-external_super_gluu.py 
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_twilio_sms.py -O $OPT/gluu/python/libs/casa-external_twilio_sms.py
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_u2f.py -O $OPT/gluu/python/libs/casa-external_u2f.py
+    
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/installer/casa_cleanup.py -O $COMMUNITY/community-edition-setup/casa_cleanup.py
+    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/installer/setup_casa.py -O $COMMUNITY/community-edition-setup/setup_casa.py
+    
+    wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs
 fi
