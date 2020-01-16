@@ -70,7 +70,7 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/installer/casa_cleanup.py -O $COMMUNITY/community-edition-setup/casa_cleanup.py
     wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/installer/setup_casa.py -O $COMMUNITY/community-edition-setup/setup_casa.py
     
-    wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs
+    wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs/casa.pub
     
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O gluu-server.amd64/gluu-server/lib/systemd/system/casa.service
     
