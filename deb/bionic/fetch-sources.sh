@@ -86,6 +86,8 @@ if [ -n "${VER}" ]; then
     wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DIRWEB/oxd-server/lib/oxd-server.jar
     
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O $DIRWEB/oxd-server/oxd-server.service
-    tar -cvzf $DIRWEB/oxd-server.tgz $DIRWEB/oxd-server
-    rm -rf $DIRWEB/oxd-server
+    pushd $DIRWEB/
+      tar -cvzf oxd-server.tgz oxd-server
+      rm -rf oxd-server
+    popd
 fi
