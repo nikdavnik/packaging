@@ -87,4 +87,5 @@ if [ -n "${VER}" ]; then
     
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O $DIRWEB/oxd-server/oxd-server.service
     tar -cvzf $DIRWEB/oxd-server.tgz $DIRWEB/oxd-server
+    rm -rf $DIRWEB/oxd-server
 fi
