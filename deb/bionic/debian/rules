@@ -32,7 +32,3 @@ override_dh_fixperms:
 	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/gluu/python/libs/casa-external_u2f.py
 	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/gluu/python/libs/casa-external_fido2.py
 	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/dist/gluu/casa-al/casa.py
-	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/oxd-server/bin/oxd-start.sh
-	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/oxd-server/bin/lsox.sh
-	chown -R jetty:jetty ./debian/gluu-server/opt/gluu-server/opt/oxd-server/data
-	chmod 764 ./debian/gluu-server/opt/gluu-server/opt/oxd-server/data	
