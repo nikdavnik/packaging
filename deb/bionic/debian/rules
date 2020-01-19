@@ -24,8 +24,6 @@ override_dh_fixperms:
 	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/ld-2.27.so
 	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/libc-2.27.so
 	chmod 755 ./debian/gluu-server/opt/gluu-server/lib/x86_64-linux-gnu/libpthread-2.27.so
-	chmod 755 ./debian/gluu-server/opt/gluu-server/install/community-edition-setup/setup_casa.py
-	chmod 755 ./debian/gluu-server/opt/gluu-server/install/community-edition-setup/casa_cleanup.py
 	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/gluu/python/libs/casa-external_otp.py
 	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/gluu/python/libs/casa-external_super_gluu.py
 	chmod 755 ./debian/gluu-server/opt/gluu-server/opt/gluu/python/libs/casa-external_twilio_sms.py
