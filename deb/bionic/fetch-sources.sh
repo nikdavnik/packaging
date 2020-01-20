@@ -56,17 +56,7 @@ if [ -n "${VER}" ]; then
     wget https://ox.gluu.org/maven/org/gluu/casa/$CASA_SOURCE/casa-$CASA_SOURCE.war -O $DIRWEB/casa.war
     wget https://repo1.maven.org/maven2/com/twilio/sdk/twilio/7.17.0/twilio-7.17.0.jar -O $DIRWEB/twilio-7.17.0.jar
     wget https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar -O $DIRWEB/jsmpp-2.3.7.jar
-    
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/plugins/account-linking/extras/casa.py -O $DIRWEB/casa-al/casa.py
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/plugins/account-linking/extras/casa.xhtml -O $DIRWEB/casa-al/casa.xhtml
-    
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_fido2.py -O $OPT/gluu/python/libs/casa-external_fido2.py
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_otp.py -O $OPT/gluu/python/libs/casa-external_otp.py
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_smpp.py -O $OPT/gluu/python/libs/casa-external_smpp.py
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_super_gluu.py -O $OPT/gluu/python/libs/casa-external_super_gluu.py 
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_twilio_sms.py -O $OPT/gluu/python/libs/casa-external_twilio_sms.py
-    wget https://raw.githubusercontent.com/GluuFederation/casa/$INSTALL/extras/scripts/casa-external_u2f.py -O $OPT/gluu/python/libs/casa-external_u2f.py
-        
+            
     wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs/casa.pub
     
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O gluu-server.amd64/gluu-server/lib/systemd/system/casa.service
