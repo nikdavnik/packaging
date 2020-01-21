@@ -2,9 +2,13 @@
 
 VER=$1
 INSTALL_VER=$2
+CASA_SOURCE=$3
+OXD_SOURCE=$4
 
 DIRWEB="gluu-server.amd64/gluu-server/opt/dist/gluu"
 COMMUNITY="gluu-server.amd64/gluu-server/install"
+OPT="gluu-server.amd64/gluu-server/opt"
+GLUU_ROOT="gluu-server.amd64/gluu-server"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
@@ -34,7 +38,7 @@ if [ -n "${VER}" ]; then
     chmod +x gluu-server.amd64/gluu-server/tmp/gluu-serverd
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER.jar -O $DIRWEB/super-gluu-radius-server.jar
-    
+  
     # systemd files for services
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server.amd64/gluu-server/lib/systemd/system/identity.service 
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server.amd64/gluu-server/lib/systemd/system/opendj.service
@@ -46,5 +50,31 @@ if [ -n "${VER}" ]; then
     # Update script
     mkdir -p gluu-server.amd64/gluu-server/install/update
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0.x/update_4.0.1.py -O gluu-server.amd64/gluu-server/install/update/update_4.0.1.py
-    chmod +x gluu-server.amd64/gluu-server/install/update/update_4.0.1.py    
+    chmod +x gluu-server.amd64/gluu-server/install/update/update_4.0.1.py
+    
+    # Casa files
+    wget https://ox.gluu.org/maven/org/gluu/casa/$CASA_SOURCE/casa-$CASA_SOURCE.war -O $DIRWEB/casa.war
+    wget https://repo1.maven.org/maven2/com/twilio/sdk/twilio/7.17.0/twilio-7.17.0.jar -O $DIRWEB/twilio-7.17.0.jar
+    wget https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar -O $DIRWEB/jsmpp-2.3.7.jar
+            
+    wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs/casa.pub
+    
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O gluu-server.amd64/gluu-server/lib/systemd/system/casa.service
+    
+    # oxd files
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $DIRWEB/oxd-server/bin/lsox.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $DIRWEB/oxd-server/bin/oxd-start.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.sh -O $DIRWEB/oxd-server/bin/oxd-server.sh
+    
+    wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $DIRWEB/oxd-server/conf/oxd-server.keystore
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $DIRWEB/oxd-server/conf/oxd-server.yml
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $DIRWEB/oxd-server/conf/swagger.yaml
+    
+    wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DIRWEB/oxd-server/lib/oxd-server.jar
+    
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O $DIRWEB/oxd-server/oxd-server.service
+    pushd $DIRWEB/
+      tar -cvzf oxd-server.tgz oxd-server
+      rm -rf oxd-server
+    popd
 fi
