@@ -73,7 +73,8 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $DIRWEB/oxd-server/conf/swagger.yaml
     
     wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DIRWEB/oxd-server/lib/oxd-server.jar
-    
+    cp /home/jenkins/oxd_files/bcprov-jdk15on-1.54.jar $DIRWEB/oxd-server/lib/
+ 
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O $DIRWEB/oxd-server/oxd-server.service
     pushd $DIRWEB/
       tar -cvzf oxd-server.tgz oxd-server
