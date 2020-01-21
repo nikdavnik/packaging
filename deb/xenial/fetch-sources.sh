@@ -2,9 +2,13 @@
 
 VER=$1
 INSTALL_VER=$2
+CASA_SOURCE=$3
+OXD_SOURCE=$4
 
 DIRWEB="gluu-server.amd64/gluu-server/opt/dist/gluu"
 COMMUNITY="gluu-server.amd64/gluu-server/install"
+OPT="gluu-server.amd64/gluu-server/opt"
+GLUU_ROOT="gluu-server.amd64/gluu-server"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
@@ -39,4 +43,34 @@ if [ -n "${VER}" ]; then
     mkdir -p gluu-server.amd64/gluu-server/install/update
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0.x/update_4.0.1.py -O gluu-server.amd64/gluu-server/install/update/update_4.0.1.py
     chmod +x gluu-server.amd64/gluu-server/install/update/update_4.0.1.py    
+    
+    # Casa files
+    wget https://ox.gluu.org/maven/org/gluu/casa/$CASA_SOURCE/casa-$CASA_SOURCE.war -O $DIRWEB/casa.war
+    wget https://repo1.maven.org/maven2/com/twilio/sdk/twilio/7.17.0/twilio-7.17.0.jar -O $DIRWEB/twilio-7.17.0.jar
+    wget https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar -O $DIRWEB/jsmpp-2.3.7.jar
+
+    mkdir -p $GLUU_ROOT/etc/certs
+    wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs/casa.pub
+    
+    
+    # oxd files
+    mkdir -p $DIRWEB/oxd-server/bin $DIRWEB/oxd-server/data $DIRWEB/oxd-server/lib $DIRWEB/oxd-server/conf
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $DIRWEB/oxd-server/bin/lsox.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $DIRWEB/oxd-server/bin/oxd-start.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.sh -O $DIRWEB/oxd-server/bin/oxd-server.sh
+    
+    wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $DIRWEB/oxd-server/conf/oxd-server.keystore
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $DIRWEB/oxd-server/conf/oxd-server.yml
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $DIRWEB/oxd-server/conf/swagger.yaml
+    
+    wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DIRWEB/oxd-server/lib/oxd-server.jar
+    cp /home/jenkins/oxd_files/bcprov-jdk15on-1.54.jar $DIRWEB/oxd-server/lib/    
+    
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server-default -O $DIRWEB/oxd-server/oxd-server-default
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.init.d.file -O $DIRWEB/oxd-server/oxd-server.init.d
+    
+    pushd $DIRWEB/
+      tar -cvzf oxd-server.tgz oxd-server
+      rm -rf oxd-server
+    popd    
 fi
