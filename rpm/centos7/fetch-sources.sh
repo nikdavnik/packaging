@@ -4,9 +4,13 @@ build_root="./gluu-server"
 
 VER=$1
 INSTALL_VER=$2
+CASA_SOURCE=$3
+OXD_SOURCE=$4
 
 DISTWEB="gluu-server/opt/dist/gluu"
 COMMUNITY="gluu-server/install"
+OPT="gluu-server/opt"
+GLUU_ROOT="gluu-server"
 
 INSTALL="master"
 if [ -n "${INSTALL_VER}" ]; then
@@ -51,4 +55,23 @@ if [ -n "${VER}" ]; then
     mkdir -p gluu-server/install/update
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0.x/update_4.0.1.py -O gluu-server/install/update/update_4.0.1.py
     chmod +x gluu-server/install/update/update_4.0.1.py    
+    
+    # oxd files
+    mkdir -p $DISTWEB/oxd-server/bin $DISTWEB/oxd-server/data $DISTWEB/oxd-server/lib $DISTWEB/oxd-server/conf
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $DISTWEB/oxd-server/bin/lsox.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $DISTWEB/oxd-server/bin/oxd-start.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.sh -O $DISTWEB/oxd-server/bin/oxd-server.sh
+    
+    wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $DISTWEB/oxd-server/conf/oxd-server.keystore
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $DISTWEB/oxd-server/conf/oxd-server.yml
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $DISTWEB/oxd-server/conf/swagger.yaml
+    
+    wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DISTWEB/oxd-server/lib/oxd-server.jar
+    cp /home/jenkins/oxd_files/bcprov-jdk15on-1.54.jar $DISTWEB/oxd-server/lib/    
+    
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O $DISTWEB/oxd-server/oxd-server.service
+    pushd $DISTWEB/
+      tar -cvzf oxd-server.tgz oxd-server
+      rm -rf oxd-server
+    popd
 fi
