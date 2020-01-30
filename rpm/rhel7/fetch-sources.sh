@@ -51,11 +51,6 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/passport.service -O gluu-server/lib/systemd/system/passport.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/idp.service -O gluu-server/lib/systemd/system/idp.service
     
-    # Update script
-    mkdir -p gluu-server/install/update
-    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/update/4.0.x/update_4.0.1.py -O gluu-server/install/update/update_4.0.1.py
-    chmod +x gluu-server/install/update/update_4.0.1.py   
-    
     # Casa files
     wget https://ox.gluu.org/maven/org/gluu/casa/$CASA_SOURCE/casa-$CASA_SOURCE.war -O $DISTWEB/casa.war
     wget https://repo1.maven.org/maven2/com/twilio/sdk/twilio/7.17.0/twilio-7.17.0.jar -O $DISTWEB/twilio-7.17.0.jar
