@@ -86,7 +86,7 @@ if [ $1 == 1 ]; then
   echo "Starting gluu-server ..."
   sleep 1
   gluu-serverd start
-  sleep 5
+  sleep 10
   ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
@@ -165,6 +165,16 @@ if [ $1 == 2 ]; then
         /sbin/gluu-serverd stop
         /sbin/gluu-serverd start 
         sleep 30
+      else
+        if [ -z "$(ls -A /opt/gluu-server/install/community-edition-setup)" ]; then
+            echo "Starting gluu-server ..."
+            sleep 1
+            gluu-serverd start
+            sleep 10
+            ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
+                -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+                -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
+        fi        
       fi     
 fi
 
