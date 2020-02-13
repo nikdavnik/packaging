@@ -55,7 +55,7 @@ if [ "$1" = "configure" ]; then
     echo "Starting gluu-server ..."
     sleep 1
     gluu-serverd start
-    sleep 5
+    sleep 10
     ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
@@ -135,7 +135,7 @@ if [ "$1" = "configure" ]; then
             echo "Starting gluu-server ..."
             sleep 1
             gluu-serverd start
-            sleep 5
+            sleep 10
             ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
                 -o PubkeyAuthentication=yes root@localhost '/opt/gluu/bin/install.py'  
