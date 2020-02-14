@@ -10,10 +10,10 @@ if [ "$1" = "remove" ] ; then
         rm -rf /sbin/gluu-serverd
     fi
     
-    if [ -f /lib/systemd/system/systemd-nspawn@gluu_server.service ]; then
-        systemctl disable systemd-nspawn@gluu_server.service        
-        rm -rf /lib/systemd/system/systemd-nspawn@gluu_server.service
-        rm -rf /var/lib/container/gluu_server
+    if [ -f /lib/systemd/system/systemd-nspawn@gluu-server.service ]; then
+        systemctl disable systemd-nspawn@gluu-server.service        
+        rm -rf /lib/systemd/system/systemd-nspawn@gluu-server.service
+        rm -rf /var/lib/container/gluu-server
     fi
     
     rm -rf /var/lib/dpkg/info/gluu-server.*
