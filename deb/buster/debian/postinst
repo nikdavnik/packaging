@@ -9,7 +9,7 @@ ARG=$1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_user.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '/tmp/system_group.list' > /dev/null 2>&1
 /usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chmod 777 /tmp' > /dev/null 2>&1
-/usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R man /var/cache/man' > /dev/null 2>&1
+#/usr/sbin/chroot /opt/gluu-server /bin/su - root -c 'chown -R man /var/cache/man' > /dev/null 2>&1
 
 # gluu-serverd
 mkdir -p /sbin/
