@@ -6,14 +6,14 @@
 #  (at your option) any later version.
 
 [Unit]
-Description=Container %I
+Description=Container gluu-server
 Documentation=man:systemd-nspawn(1)
 PartOf=machines.target
 Before=machines.target
 After=network-online.target
 
 [Service]
-ExecStart=/usr/bin/systemd-nspawn --quiet --boot --link-journal=try-guest --machine=%I
+ExecStart=/usr/bin/systemd-nspawn --quiet --boot --link-journal=try-guest --machine=gluu-server
 KillMode=mixed
 Type=notify
 RestartForceExitStatus=133
