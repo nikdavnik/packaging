@@ -32,7 +32,7 @@ mkdir -p %{buildroot}/usr/sbin/
 /bin/cp %{SOURCE1} %{buildroot}/usr/sbin/
 # systemd unit file
 mkdir -p %{buildroot}/lib/systemd/system/
-/bin/cp %{SOURCE2} %{buildroot}/lib/systemd/system/systemd-nspawn@gluu_server.service
+/bin/cp %{SOURCE2} %{buildroot}/lib/systemd/system/systemd-nspawn@gluu-server.service
 
 %pre
 # Package is being updated
@@ -64,7 +64,7 @@ systemctl restart systemd-journald
 if [[ ! -d /var/lib/container ]]; then
   mkdir -p /var/lib/container
 fi
-ln -s %{gluu_root} /var/lib/container/gluu_server
+ln -s %{gluu_root} /var/lib/container/gluu-server
 if [[ -d /etc/gluu/keys ]]; then
   rm -rf /etc/gluu/keys
   mkdir -p /etc/gluu/keys
@@ -80,12 +80,12 @@ cat /etc/gluu/keys/gluu-console.pub > /opt/gluu-server/root/.ssh/authorized_keys
 chmod 600 /opt/gluu-server/root/.ssh/authorized_keys
 cp -a /etc/resolv.conf /opt/gluu-server/etc/
 systemctl enable machines.target
-systemctl enable systemd-nspawn@gluu_server.service
+systemctl enable systemd-nspawn@gluu-server.service
 # Running setup on package installation
 if [ $1 == 1 ]; then
   echo "Starting gluu-server ..."
   sleep 1
-  gluu-serverd start
+  /sbin/gluu-serverd start
   sleep 10
   ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
@@ -169,7 +169,7 @@ if [ $1 == 2 ]; then
         if [ -z "$(ls -A /opt/gluu-server/install/community-edition-setup)" ]; then
             echo "Starting gluu-server ..."
             sleep 1
-            gluu-serverd start
+            /sbin/gluu-serverd start
             sleep 10
             ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
@@ -181,7 +181,7 @@ fi
 %preun
 if [ $1 == 0 ]; then
   echo "Stopping Gluu Server ..."
-  systemctl stop systemd-nspawn@gluu_server.service
+  systemctl stop systemd-nspawn@gluu-server.service
   systemctl disable machines.target
 fi
 
@@ -193,15 +193,15 @@ if [ $1 == 0 ]; then
   /bin/mv %{gluu_root} %{gluu_root}.rpm.saved
   echo "Your changes will be saved into %{gluu_root}.rpm.saved"
   rm -rf /etc/gluu/keys
-  unlink /var/lib/container/gluu_server
-  rm -rf /var/lib/container/gluu_server
+  unlink /var/lib/container/gluu-server
+  rm -rf /var/lib/container/gluu-server
   rm -rf /opt/gluu-server
 fi
 
 %files
 %{gluu_root}/*
 %attr(755,root,root) /usr/sbin/gluu-serverd
-/lib/systemd/system/systemd-nspawn@gluu_server.service
+/lib/systemd/system/systemd-nspawn@gluu-server.service
 
 %clean
 rm -rf %{buildroot}
