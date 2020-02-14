@@ -18,9 +18,9 @@ rm -rf /opt/gluu-server/tmp/gluu-serverd
 
 # systemd unit file
 mkdir -p /lib/systemd/system/
-/bin/cp /opt/gluu-server/tmp/systemd-unitfile /lib/systemd/system/systemd-nspawn@gluu_server.service
+/bin/cp /opt/gluu-server/tmp/systemd-unitfile /lib/systemd/system/systemd-nspawn@gluu-server.service
 systemctl enable machines.target
-systemctl enable systemd-nspawn@gluu_server.service
+systemctl enable systemd-nspawn@gluu-server.service
 rm -rf /opt/gluu-server/tmp/systemd-unitfile
 
 sed -i 's/.*Storage.*/Storage=persistent/g' /etc/systemd/journald.conf
@@ -28,7 +28,7 @@ systemctl restart systemd-journald
 if [[ ! -d /var/lib/container ]]; then
   mkdir -p /var/lib/container
 fi
-ln -s /opt/gluu-server /var/lib/container/gluu_server
+ln -s /opt/gluu-server /var/lib/container/gluu-server
 
 if [[ -d /etc/gluu/keys ]]; then
   rm -rf /etc/gluu/keys
@@ -54,7 +54,7 @@ if [ "$1" = "configure" ]; then
   if [ -z "$RUN_VERSION" ] || [ "$RUN_VERSION" = "$VERSION" ]; then
     echo "Starting gluu-server ..."
     sleep 1
-    gluu-serverd start
+    /sbin/gluu-serverd start
     sleep 5
     ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
@@ -134,7 +134,7 @@ if [ "$1" = "configure" ]; then
         if [ -z "$(ls -A /opt/gluu-server/install/community-edition-setup)" ]; then
             echo "Starting gluu-server ..."
             sleep 1
-            gluu-serverd start
+            /sbin/gluu-serverd start
             sleep 5
             ssh -t -o IdentityFile=/etc/gluu/keys/gluu-console -o Port=60022 -o LogLevel=QUIET \
                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
