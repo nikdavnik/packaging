@@ -1,0 +1,11 @@
+[Unit]
+Description=Gluu Cluster Manager Service
+
+[Service]
+Type=forking
+ExecStart=/opt/clustermgr/bin/clustermgr4-cli start
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
