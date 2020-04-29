@@ -34,11 +34,13 @@ systemctl stop clustermgr > /dev/null 2>&1
 
 %postun
 if [ "$1" = 0 ]; then 
-rm -rf /opt/clustermgr  > /dev/null 2>&1
+rm -rf /opt/clustermgr > /dev/null 2>&1
+rm -rf /lib/systemd/system/clustermgr.service > /dev/null 2>&1
 fi
 
 %files
 /opt/clustermgr/*
+/lib/systemd/system/clustermgr.service
 
 %changelog
 * Wed Apr 29 2020 Davit Nikoghosyan <davit@gluu.org> - %VERSION%-1
