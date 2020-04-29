@@ -25,10 +25,6 @@ cp -a clustermgr %{buildroot}/opt/
 %pre
 mkdir -p /opt
 
-%post
-systemctl enable clustermgr > /dev/null 2>&1
-systemctl start clustermgr > /dev/null 2>&1
-
 %preun
 systemctl stop clustermgr > /dev/null 2>&1
 
