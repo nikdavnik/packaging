@@ -20,7 +20,7 @@ mkdir -p %{buildroot}/tmp/
 mkdir -p %{buildroot}/opt/
 mkdir -p %{buildroot}/lib/systemd/system/
 cp -a %{SOURCE1} %{buildroot}/lib/systemd/system/clustermgr.service
-cp -a opt/clustermgr %{buildroot}/opt/
+cp -a clustermgr %{buildroot}/opt/
 
 
 %pre
