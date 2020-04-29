@@ -38,6 +38,8 @@ if [ "$1" = 0 ]; then
 rm -rf /opt/clustermgr  > /dev/null 2>&1
 fi
 
+%files
+/opt/clustermgr/*
 
 %changelog
 * Wed Apr 29 2020 Davit Nikoghosyan <davit@gluu.org> - %VERSION%-1
