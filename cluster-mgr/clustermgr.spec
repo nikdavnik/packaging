@@ -36,6 +36,7 @@ systemctl stop clustermgr > /dev/null 2>&1
 if [ "$1" = 0 ]; then 
 rm -rf /opt/clustermgr > /dev/null 2>&1
 rm -rf /lib/systemd/system/clustermgr.service > /dev/null 2>&1
+systemctl daemon-reload > /dev/null 2>&1
 fi
 
 %files
