@@ -1,6 +1,6 @@
 Name:		clustermgr
 Version:	%VERSION%
-Release:	%RELEASE%.%DISTRO%
+Release:	%RELEASE%.el7
 Summary:	OAuth protected API
 License:	GUI tool for installing and managing clustered Gluu Servers 
 URL:  https://www.gluu.org
