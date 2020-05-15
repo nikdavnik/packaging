@@ -30,12 +30,7 @@ if [ -n "${VER}" ]; then
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DISTWEB/idp3_cml_keygenerator.jar
 #   wget -nv http://ox.gluu.org/maven/org/gluu/credmgr/credmgr/$VER/credmgr-$VER.war -O $DISTWEB/credmgr.war
 
-    #rm -rf $COMMUNITY/community-edition-setup*
-    #curl -LkSs https://codeload.github.com/GluuFederation/community-edition-setup/zip/$INSTALL -o $COMMUNITY/community-edition-setup.zip
-    #unzip $COMMUNITY/community-edition-setup.zip -d $COMMUNITY
-    #mv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
-    #rm -rf $COMMUNITY/community-edition-setup.zip
-    wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $DISTWEB/community-edition-setup.zip
+    wget -nv https://github.com/GluuFederation/community-edition-setup/archive/master.zip -O $DISTWEB/community-edition-setup.zip
     wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server/opt/gluu/bin/install.py
     chmod +x gluu-server/opt/gluu/bin/install.py
     
