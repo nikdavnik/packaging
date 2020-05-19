@@ -61,7 +61,7 @@ if [ -n "${VER}" ]; then
     mkdir -p $DIRWEB/oxd-server/bin $DIRWEB/oxd-server/data $DIRWEB/oxd-server/lib $DIRWEB/oxd-server/conf
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $DIRWEB/oxd-server/bin/lsox.sh
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $DIRWEB/oxd-server/bin/oxd-start.sh
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.sh -O $DIRWEB/oxd-server/bin/oxd-server.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server -O $DIRWEB/oxd-server/bin/oxd-server
     
     wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $DIRWEB/oxd-server/conf/oxd-server.keystore
     wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $DIRWEB/oxd-server/conf/oxd-server.yml
@@ -70,7 +70,7 @@ if [ -n "${VER}" ]; then
     wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DIRWEB/oxd-server/lib/oxd-server.jar
     cp /home/jenkins/oxd_files/bcprov-jdk15on-1.64.jar $DIRWEB/oxd-server/lib/    
     
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server.service.file -O $DIRWEB/oxd-server/oxd-server.service
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxd-server.service -O $DIRWEB/oxd-server/oxd-server.service
     pushd $DIRWEB/
       tar -cvzf oxd-server.tgz oxd-server
       rm -rf oxd-server
