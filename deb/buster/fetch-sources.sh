@@ -29,7 +29,7 @@ if [ -n "${VER}" ]; then
     #mv -nv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
     #rm -rf $COMMUNITY/community-edition-setup.zip
     wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $DIRWEB/community-edition-setup.zip
-    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
+    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/$INSTALL/install.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     chmod +x gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     
     wget https://ox.gluu.org/npm/passport/passport-4.1.0.tgz -O $DIRWEB/passport.tgz
