@@ -26,12 +26,12 @@ if [ -n "${VER}" ]; then
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethStatic/$VER/oxShibbolethStatic-$VER.jar -O $DIRWEB/shibboleth-idp.jar
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DIRWEB/idp3_cml_keygenerator.jar
     
-    wget -nv https://github.com/GluuFederation/community-edition-setup/archive/master.zip -O $DIRWEB/community-edition-setup.zip
-    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
+    wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $DIRWEB/community-edition-setup.zip
+    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/$INSTALL/install.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     chmod +x gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     
     wget https://ox.gluu.org/npm/passport/passport-4.2.0.tgz -O $DIRWEB/passport.tgz
-    wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DIRWEB/passport-$INSTALL-node_modules.tar.gz
+    wget https://ox.gluu.org/npm/passport/passport-$INSTALL-node_modules.tar.gz -O $DIRWEB/passport-$INSTALL-node_modules.tar.gz
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server/tmp/gluu-serverd
     chmod +x gluu-server.amd64/gluu-server/tmp/gluu-serverd
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER-distribution.zip -O $DIRWEB/gluu-radius-libs.zip
@@ -59,13 +59,13 @@ if [ -n "${VER}" ]; then
     
     # oxd files
     mkdir -p $DIRWEB/oxd-server/bin $DIRWEB/oxd-server/data $DIRWEB/oxd-server/lib $DIRWEB/oxd-server/conf
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/master/oxd-server/src/main/bin/lsox.sh -O $DIRWEB/oxd-server/bin/lsox.sh
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/master/oxd-server/src/main/bin/oxd-start.sh -O $DIRWEB/oxd-server/bin/oxd-start.sh
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/master/debian/oxd-server -O $DIRWEB/oxd-server/bin/oxd-server
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/lsox.sh -O $DIRWEB/oxd-server/bin/lsox.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/bin/oxd-start.sh -O $DIRWEB/oxd-server/bin/oxd-start.sh
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/debian/oxd-server -O $DIRWEB/oxd-server/bin/oxd-server
     
-    wget https://github.com/GluuFederation/oxd/raw/master/oxd-server/src/main/resources/oxd-server.keystore -O $DIRWEB/oxd-server/conf/oxd-server.keystore
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/master/oxd-server/src/main/resources/oxd-server.yml -O $DIRWEB/oxd-server/conf/oxd-server.yml
-    wget https://raw.githubusercontent.com/GluuFederation/oxd/master/oxd-server/src/main/resources/swagger.yaml -O $DIRWEB/oxd-server/conf/swagger.yaml
+    wget https://github.com/GluuFederation/oxd/raw/$INSTALL/oxd-server/src/main/resources/oxd-server.keystore -O $DIRWEB/oxd-server/conf/oxd-server.keystore
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/oxd-server.yml -O $DIRWEB/oxd-server/conf/oxd-server.yml
+    wget https://raw.githubusercontent.com/GluuFederation/oxd/$INSTALL/oxd-server/src/main/resources/swagger.yaml -O $DIRWEB/oxd-server/conf/swagger.yaml
     
     wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DIRWEB/oxd-server/lib/oxd-server.jar
     cp /home/jenkins/oxd_files/bcprov-jdk15on-1.64.jar $DIRWEB/oxd-server/lib/    
