@@ -75,4 +75,7 @@ if [ -n "${VER}" ]; then
       tar -cvzf oxd-server.tgz oxd-server
       rm -rf oxd-server
     popd
+    
+    wget https://raw.githubusercontent.com/GluuFederation/gluu-snap/master/facter/facter -O $GLUU_ROOT/usr/bin/facter
+    chmod +x /usr/bin/facter     
 fi
