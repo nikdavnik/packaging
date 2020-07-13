@@ -77,5 +77,5 @@ if [ -n "${VER}" ]; then
     popd
     
     wget https://raw.githubusercontent.com/GluuFederation/gluu-snap/master/facter/facter -O $GLUU_ROOT/usr/bin/facter
-    chmod +x /usr/bin/facter    
+    chmod +x $GLUU_ROOT/usr/bin/facter    
 fi
