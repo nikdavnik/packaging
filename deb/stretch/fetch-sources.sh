@@ -27,7 +27,7 @@ if [ -n "${VER}" ]; then
     wget -nv http://ox.gluu.org/maven/org/gluu/oxShibbolethKeyGenerator/$VER/oxShibbolethKeyGenerator-$VER.jar -O $DIRWEB/idp3_cml_keygenerator.jar
     
     wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $DIRWEB/community-edition-setup.zip
-    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/$INSTALL.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
+    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/$INSTALL/install.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     chmod +x gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     
     wget https://ox.gluu.org/npm/passport/passport-4.2.0.tgz -O $DIRWEB/passport.tgz
