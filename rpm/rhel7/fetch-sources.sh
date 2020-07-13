@@ -34,13 +34,13 @@ if [ -n "${VER}" ]; then
     #mv $COMMUNITY/community-edition-setup-$INSTALL $COMMUNITY/community-edition-setup
     #rm -rf $COMMUNITY/community-edition-setup.zip
     wget -nv https://github.com/GluuFederation/community-edition-setup/archive/$INSTALL.zip -O $DISTWEB/community-edition-setup.zip
-    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/master/install.py -O gluu-server/opt/gluu/bin/install.py
+    wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/$INSTALL/install.py -O gluu-server/opt/gluu/bin/install.py
     chmod +x gluu-server/opt/gluu/bin/install.py
 
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-serverd
     chmod +x gluu-serverd
     wget https://ox.gluu.org/npm/passport/passport-4.2.0.tgz -O $DISTWEB/passport.tgz
-    wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DISTWEB/passport-$INSTALL-node_modules.tar.gz
+    wget https://ox.gluu.org/npm/passport/passport-$INSTALL-node_modules.tar.gz -O $DISTWEB/passport-$INSTALL-node_modules.tar.gz
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER-distribution.zip -O $DISTWEB/gluu-radius-libs.zip
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER.jar -O $DISTWEB/super-gluu-radius-server.jar     
 
