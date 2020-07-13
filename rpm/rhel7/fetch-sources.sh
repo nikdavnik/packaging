@@ -40,7 +40,7 @@ if [ -n "${VER}" ]; then
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-serverd
     chmod +x gluu-serverd
     wget https://ox.gluu.org/npm/passport/passport-4.2.0.tgz -O $DISTWEB/passport.tgz
-    wget https://ox.gluu.org/npm/passport/passport-$INSTALL-node_modules.tar.gz -O $DISTWEB/passport-$INSTALL-node_modules.tar.gz
+    wget https://ox.gluu.org/npm/passport/passport-master-node_modules.tar.gz -O $DISTWEB/passport-$INSTALL-node_modules.tar.gz
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER-distribution.zip -O $DISTWEB/gluu-radius-libs.zip
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER.jar -O $DISTWEB/super-gluu-radius-server.jar     
 
@@ -80,4 +80,7 @@ if [ -n "${VER}" ]; then
       tar -cvzf oxd-server.tgz oxd-server
       rm -rf oxd-server
     popd
+    
+    wget https://raw.githubusercontent.com/GluuFederation/gluu-snap/master/facter/facter -O $GLUU_ROOT/usr/bin/facter
+    chmod +x $GLUU_ROOT/usr/bin/facter        
 fi
