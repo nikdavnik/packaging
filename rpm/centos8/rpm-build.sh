@@ -21,4 +21,4 @@ cd $gluu_ce_path
 /bin/cp $specfile $rpmbuild_path/SPECS/
 
 # Run build
-rpmbuild -ba --define "_topdir $rpmbuild_path" $rpmbuild_path/SPECS/$specfile
+rpmbuild -ba --define "_topdir $rpmbuild_path" $rpmbuild_path/SPECS/$specfile --rpm-rpmbuild-define "_build_id_links none"
