@@ -1,5 +1,6 @@
 %global __os_install_post %{nil}
 %define gluu_root /opt/gluu-server
+%define _build_id_links none
 
 Name: gluu-server
 Version: 1
