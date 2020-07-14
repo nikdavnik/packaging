@@ -24,12 +24,12 @@ mkdir -p %{buildroot}/opt
 tar -xzf %{SOURCE0} -C %{buildroot}/opt
 touch "%{buildroot}%{gluu_root}/tmp/system_user.list"
 touch "%{buildroot}%{gluu_root}/tmp/system_group.list"
-chmod 4777 "%{buildroot}%{gluu_root}/tmp"
-chmod 0755 "%{buildroot}%{gluu_root}/tmp/system_user.list"
+chmod 4777 "%{buildroot}%{gluu_root}/tmp"  
+chmod 0755 "%{buildroot}%{gluu_root}/tmp/system_user.list" 
 chmod 0755 "%{buildroot}%{gluu_root}/tmp/system_group.list"
 # gluu-serverd
-mkdir -p %{buildroot}/usr/sbin/
-/bin/cp %{SOURCE1} %{buildroot}/usr/sbin/
+mkdir -p %{buildroot}/sbin/
+/bin/cp %{SOURCE1} %{buildroot}/sbin/
 # systemd unit file
 mkdir -p %{buildroot}/lib/systemd/system/
 /bin/cp %{SOURCE2} %{buildroot}/lib/systemd/system/systemd-nspawn@gluu-server.service
@@ -107,13 +107,11 @@ if [ $1 == 2 ]; then
         [ -e /opt/gluu-server/etc/profile_upgrade ] && mv /opt/gluu-server/etc/profile_upgrade /opt/gluu-server/etc/profile || true
         [ -e /opt/gluu-server/etc/security/limits.conf_upgrade ] && mv /opt/gluu-server/etc/security/limits.conf_upgrade /opt/gluu-server/etc/security/limits.conf || true
         [ -e /opt/gluu-server/etc/sysconfig/network_upgrade ] && mv /opt/gluu-server/etc/sysconfig/network_upgrade /opt/gluu-server/etc/sysconfig/network || true       
-        [ -e /opt/gluu-server/etc/httpd/conf/httpd.conf_upgrade ] && mv /opt/gluu-server/etc/httpd/conf/httpd.conf_upgrade /opt/gluu-server/etc/httpd/conf/httpd.conf || true                       
+        [ -e /opt/gluu-server/etc/httpd/conf/httpd.conf_upgrade ] && mv /opt/gluu-server/etc/httpd/conf/httpd.conf_upgrade /opt/gluu-server/etc/httpd/conf/httpd.conf || true               
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/jetty ] && chown -R jetty:jetty /opt/jetty* || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/gluu/jetty ] && chown -R jetty:jetty /opt/gluu/jetty || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/gluu/jetty ] && chmod -R 755 /opt/gluu/jetty || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/shibboleth-idp ] && chown -R jetty:jetty /opt/shibboleth-idp || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs ] && chown -R root:gluu /etc/certs || exit 0'
-        /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /etc/certs/oxauth-keys.jks ] && chown -R jetty:jetty /etc/certs/oxauth-keys.jks || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/opendj ] && chown -R ldap:ldap /opt/opendj || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/node ] && chown -R node:node /opt/node* || exit 0'
         /usr/sbin/chroot /opt/gluu-server /bin/su - root -c '[ -e /opt/gluu/node ] && chown -R node:node /opt/gluu/node || exit 0'
@@ -180,27 +178,26 @@ fi
 
 %preun
 if [ $1 == 0 ]; then
-  echo "Stopping Gluu Server ..."
-  systemctl stop systemd-nspawn@gluu-server.service
-  systemctl disable machines.target
-fi
+      echo "Stopping Gluu Server ..."
+      systemctl stop systemd-nspawn@gluu-server.service
+fi 
 
 %postun
 if [ $1 == 0 ]; then
-  if [ -d %{gluu_root}.rpm.saved ] ; then
-        rm -rf %{gluu_root}.rpm.saved
-  fi
-  /bin/mv %{gluu_root} %{gluu_root}.rpm.saved
-  echo "Your changes will be saved into %{gluu_root}.rpm.saved"
-  rm -rf /etc/gluu/keys
-  unlink /var/lib/container/gluu-server
-  rm -rf /var/lib/container/gluu-server
-  rm -rf /opt/gluu-server
+      if [ -d %{gluu_root}.rpm.saved ] ; then
+           rm -rf %{gluu_root}.rpm.saved
+      fi
+      /bin/mv %{gluu_root} %{gluu_root}.rpm.saved
+      echo "Your changes will be saved into %{gluu_root}.rpm.saved"
+      rm -rf /etc/gluu/keys
+      unlink /var/lib/container/gluu-server
+      rm -rf /var/lib/container/gluu-server
+      rm -rf /opt/gluu-server
 fi
 
 %files
 %{gluu_root}/*
-%attr(755,root,root) /usr/sbin/gluu-serverd
+%attr(755,root,root) /sbin/gluu-serverd
 /lib/systemd/system/systemd-nspawn@gluu-server.service
 
 %clean
@@ -208,4 +205,4 @@ rm -rf %{buildroot}
 
 %changelog
 * Wed Jan 13 2016 Adrian Alves <adrian@gluu.org> - 1-1
-- new release 4.0
+- new release
