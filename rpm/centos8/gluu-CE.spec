@@ -14,7 +14,7 @@ Source0: gluu-server.tar.gz
 Source1: gluu-serverd
 Source2: systemd-unitfile
 AutoReqProv: no
-Requires: tar, sed, openssh, coreutils >= 8.22-12, systemd >= 208-20, initscripts >= 9.49.24-1
+Requires: tar, systemd-container, sed, openssh, coreutils >= 8.22-12, systemd >= 208-20, initscripts >= 9.49.24-1
 
 %description
 Enterprise ready, free open source software for identity & access management (IAM).
