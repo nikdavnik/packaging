@@ -21,4 +21,4 @@ cd $gluu_ce_path
 /bin/cp $specfile $rpmbuild_path/SPECS/
 
 # Run build
-rpmbuild -ba --define "_topdir $rpmbuild_path" $rpmbuild_path/SPECS/$specfile 
+QA_RPATHS=$(( 0x0001|0x0010 )) rpmbuild -ba --define "_topdir $rpmbuild_path" $rpmbuild_path/SPECS/$specfile 
