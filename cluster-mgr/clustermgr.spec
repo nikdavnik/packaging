@@ -4,7 +4,7 @@ Release:	%RELEASE%
 Summary:	OAuth protected API
 License:	GUI tool for installing and managing clustered Gluu Servers 
 URL:  https://www.gluu.org
-Source0:	clustermgr-4.1.0.tgz
+Source0:	clustermgr-4.2.1.tgz
 Source1:	clustermgr.service
 Requires:  redis
 
