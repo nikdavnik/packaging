@@ -6,7 +6,6 @@ License:	GUI tool for installing and managing clustered Gluu Servers
 URL:  https://www.gluu.org
 Source0:	clustermgr-sha-4.1.0.tgz
 Source1:	clustermgr-sha.service
-Requires:  redis
 
 %description
 Cluster Manager (CM) is a GUI tool for installing and managing a highly available, 
