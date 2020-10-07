@@ -28,6 +28,8 @@ mkdir -p /opt
 %post
 systemctl daemon-reload > /dev/null 2>&1
 systemctl enable clustermgr > /dev/null 2>&1
+rm -rf /usr/local/bin/clustermgr4-cli > /dev/null 2>&1
+ln -s /opt/clustermgr/bin/clustermgr4-cli /usr/local/bin/clustermgr4-cli > /dev/null 2>&1
 
 %preun
 systemctl stop clustermgr > /dev/null 2>&1
@@ -37,6 +39,7 @@ if [ "$1" = 0 ]; then
 rm -rf /opt/clustermgr > /dev/null 2>&1
 rm -rf /lib/systemd/system/clustermgr.service > /dev/null 2>&1
 systemctl daemon-reload > /dev/null 2>&1
+rm -rf /usr/local/bin/clustermgr4-cli > /dev/null 2>&1
 fi
 
 %files
