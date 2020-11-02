@@ -69,6 +69,7 @@ if [ -n "${VER}" ]; then
     
     wget https://ox.gluu.org/maven/org/gluu/oxd-server/$OXD_SOURCE/oxd-server-$OXD_SOURCE.jar -O $DIRWEB/oxd-server/lib/oxd-server.jar
     cp /home/jenkins/oxd_files/bcprov-jdk15on-1.64.jar $DIRWEB/oxd-server/lib/    
+    cp /home/jenkins/oxd_files/bcpkix-jdk15on-1.54.jar $DIRWEB/oxd-server/lib/
     
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxd-server.service -O $DIRWEB/oxd-server/oxd-server.service
     pushd $DIRWEB/
