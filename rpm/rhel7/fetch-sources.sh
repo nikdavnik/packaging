@@ -18,6 +18,7 @@ if [ -n "${INSTALL_VER}" ]; then
 fi
 
 if [ -n "${VER}" ]; then
+    wget -nv https://ox.gluu.org/maven/org/gluu/fido2-server/$VER/fido2-server-$VER.war -O  $DISTWEB/fido2.war
     wget -nv http://ox.gluu.org/maven/org/gluu/oxauth-client/$VER/oxauth-client-$VER-jar-with-dependencies.jar -O $DIRWEB/oxauth-client-jar-with-dependencies.jar
     #wget -nv http://ox.gluu.org/maven/org/gluu/oxidp/$VER/oxidp-$VER.war -O $DISTWEB/idp.war
     wget -nv http://ox.gluu.org/maven/org/gluu/oxshibbolethIdp/$VER/oxshibbolethIdp-$VER.war -O $DISTWEB/idp.war
@@ -45,6 +46,7 @@ if [ -n "${VER}" ]; then
     wget -nv https://ox.gluu.org/maven/org/gluu/super-gluu-radius-server/$VER/super-gluu-radius-server-$VER.jar -O $DISTWEB/super-gluu-radius-server.jar     
 
     # systemd files for services
+    wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/master/package/systemd/fido2.service -O gluu-server/lib/systemd/system/fido2.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/identity.service -O gluu-server/lib/systemd/system/identity.service 
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/opendj.service -O gluu-server/lib/systemd/system/opendj.service
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/oxauth-rp.service -O gluu-server/lib/systemd/system/oxauth-rp.service
