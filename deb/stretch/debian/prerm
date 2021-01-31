@@ -13,7 +13,7 @@ case $1 in
             rm -rf /opt/gluu-server.save
         fi
         if [ -d /opt/gluu-server ] ; then
-	    echo "Your changes will be saved into /opt/gluu-server.saved"
+	    echo "Your changes will be saved into /opt/gluu-server.save"
             mv /opt/gluu-server /opt/gluu-server.save
         fi
         exit 0
