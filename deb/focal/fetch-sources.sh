@@ -30,7 +30,7 @@ if [ -n "${VER}" ]; then
     wget -nv https://raw.githubusercontent.com/GluuFederation/community-edition-setup/$INSTALL/install.py -O gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     chmod +x gluu-server.amd64/gluu-server/opt/gluu/bin/install.py
     
-    wget https://ox.gluu.org/npm/passport/passport-4.2.2.tgz -O $DIRWEB/passport.tgz
+    wget https://ox.gluu.org/npm/passport/passport-4.2.3.tgz -O $DIRWEB/passport.tgz
     wget https://ox.gluu.org/npm/passport/passport-$INSTALL-node_modules.tar.gz -O $DIRWEB/passport-$INSTALL-node_modules.tar.gz
     wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/gluu-serverd -O gluu-server.amd64/gluu-server/tmp/gluu-serverd
     chmod +x gluu-server.amd64/gluu-server/tmp/gluu-serverd
