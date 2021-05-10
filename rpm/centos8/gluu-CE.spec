@@ -194,6 +194,7 @@ if [ $1 == 0 ]; then
       unlink /var/lib/container/gluu-server
       rm -rf /var/lib/container/gluu-server
       rm -rf /opt/gluu-server
+      rm -rf /etc/systemd/system/machines.target.wants/systemd-nspawn@gluu-server.service
 fi
 
 %files
