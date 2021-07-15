@@ -56,8 +56,8 @@ if [ -n "${VER}" ]; then
   #  wget https://repo1.maven.org/maven2/com/twilio/sdk/twilio/7.17.0/twilio-7.17.0.jar -O $DISTWEB/twilio-7.17.0.jar
   #  wget https://search.maven.org/remotecontent?filepath=org/jsmpp/jsmpp/2.3.7/jsmpp-2.3.7.jar -O $DISTWEB/jsmpp-2.3.7.jar
 
-    mkdir -p $GLUU_ROOT/etc/certs
-    wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs/casa.pub
+  #  mkdir -p $GLUU_ROOT/etc/certs
+  #  wget https://github.com/GluuFederation/casa/raw/$INSTALL/extras/casa.pub -O $GLUU_ROOT/etc/certs/casa.pub
     
   #  wget https://raw.githubusercontent.com/GluuFederation/community-edition-package/$INSTALL/package/systemd/casa.service -O $GLUU_ROOT/lib/systemd/system/casa.service
     
