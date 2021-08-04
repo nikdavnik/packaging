@@ -2,11 +2,11 @@ Name:		clustermgr
 Version:	%VERSION%
 Release:	%RELEASE%
 Summary:	OAuth protected API
-License:	GUI tool for installing and managing clustered Gluu Servers 
+License:	The Gluu Support License 
 URL:  https://www.gluu.org
-Source0:	clustermgr-4.2.1.tgz
+Source0:	clustermgr-4.3.0.tgz
 Source1:	clustermgr.service
-#Requires:  redis
+Requires: python2
 
 %description
 Cluster Manager (CM) is a GUI tool for installing and managing a highly available, 
