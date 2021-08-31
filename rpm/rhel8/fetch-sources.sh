@@ -18,6 +18,8 @@ if [ -n "${INSTALL_VER}" ]; then
 fi
 
 if [ -n "${VER}" ]; then
+    wget -nv https://ox.gluu.org/maven/org/gluu/fido2-server/$VER/fido2-server-$VER.war -O  $DISTWEB/fido2.war
+    wget -nv https://ox.gluu.org/maven/org/gluu/scim-server/$VER/scim-server-$VER.war -O  $DISTWEB/scim.war
     wget -nv http://ox.gluu.org/maven/org/gluu/oxauth-client/$VER/oxauth-client-$VER-jar-with-dependencies.jar -O $DISTWEB/oxauth-client-jar-with-dependencies.jar
     #wget -nv http://ox.gluu.org/maven/org/gluu/oxidp/$VER/oxidp-$VER.war -O $DISTWEB/idp.war
     wget -nv http://ox.gluu.org/maven/org/gluu/oxshibbolethIdp/$VER/oxshibbolethIdp-$VER.war -O $DISTWEB/idp.war
