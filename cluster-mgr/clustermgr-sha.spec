@@ -4,7 +4,7 @@ Release:	%RELEASE%
 Summary:	OAuth protected API
 License:	The Gluu Support License
 URL:  https://www.gluu.org
-Source0:	clustermgr-sha-4.3.0.tgz
+Source0:	clustermgr-sha-4.3.1.tgz
 Source1:	clustermgr.service
 Requires: python2
 

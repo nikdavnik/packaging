@@ -1,6 +1,6 @@
 gluu-server %VERSION% %DIST%; urgency=medium
 
-  * New version 4.3.0
+  * New version 4.3.1
 
  -- Adrian Alves <support@gluu.org>  Thu, 13 Feb 2020 14:21:54 +0200
 
