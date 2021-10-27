@@ -7,6 +7,7 @@ URL:  https://www.gluu.org
 Source0:	clustermgr-%VERSION%.tgz
 Source1:	clustermgr.service
 Requires: python3
+AutoReqProv: no
 
 %description
 Cluster Manager (CM) is a GUI tool for installing and managing a highly available, 
