@@ -6,7 +6,7 @@ License:	The Gluu Support License
 URL:  https://www.gluu.org
 Source0:	clustermgr-%VERSION%.tgz
 Source1:	clustermgr.service
-Requires: python2
+Requires: python3
 
 %description
 Cluster Manager (CM) is a GUI tool for installing and managing a highly available, 
