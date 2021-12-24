@@ -64,5 +64,5 @@ echo "Your changes will be saved into /opt/gluu-server.rpm.saved"
 rm -rf %{buildroot}
 
 %changelog
-* Thu Oct 25 2015 Adrian Alves <support@gluu.org> - 1-1
+* Thu Oct 25 2015 Davit Nikoghosyan <support@gluu.org> - 1-1
 - Release 4.0

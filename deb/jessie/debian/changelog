@@ -2,4 +2,4 @@ gluu-server-4.0 %VERSION% %DIST%; urgency=medium
 
   * New version 4.0
 
- -- Adrian Alves <support@gluu.org>  Thu, 29 Oct 2015 14:21:54 +0200
+ -- Davit Nikoghosyan <support@gluu.org>  Thu, 29 Oct 2015 14:21:54 +0200

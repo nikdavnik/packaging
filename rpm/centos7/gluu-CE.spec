@@ -205,5 +205,5 @@ fi
 rm -rf %{buildroot}
 
 %changelog
-* Wed Jan 13 2016 Adrian Alves <adrian@gluu.org> - 1-1
+* Wed Jan 13 2016 Davit Nikoghosyan <davit@gluu.org> - 1-1
 - new release

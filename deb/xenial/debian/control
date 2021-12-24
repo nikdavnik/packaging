@@ -2,7 +2,7 @@ Source: gluu-server
 Section: java
 Priority: optional
 Maintainer: Gluu Developers <support@gluu.org>
-XSBC-Original-Maintainer: Adrian Alves <support@gluu.org>
+XSBC-Original-Maintainer: Davit Nikoghosyan <support@gluu.org>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
 Homepage: http://www.gluu.org
