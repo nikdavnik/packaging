@@ -1,21 +1,17 @@
 #!/bin/bash
 
 if [ "$1" = "remove" ] ; then
-    if [ -f /etc/init.d/gluu-server ] ; then
-        update-rc.d gluu-server remove
-        rm -rf /etc/init.d/gluu-server
-    fi
-
-    if [ -f /sbin/gluu-serverd ] ; then
-        rm -rf /sbin/gluu-serverd
-    fi
-    
-    if [ -f /lib/systemd/system/systemd-nspawn@gluu-server.service ]; then
-        systemctl disable systemd-nspawn@gluu-server.service        
-        rm -rf /lib/systemd/system/systemd-nspawn@gluu-server.service
-        rm -rf /var/lib/container/gluu-server
-    fi
-    
-    rm -rf /var/lib/dpkg/info/gluu-server.*
+    rm -rf /etc/systemd/system/jans-*.service    
+    rm -rf /etc/systemd/system/opendj.service    
+    rm -rf /etc/certs/*
+    rm -rf /etc/default/jans-*
+    rm -rf /var/lib/dpkg/info/jans.*
+    rm -rf /opt/jans
+    rm -rf /opt/dist
+    rm -rf /opt/opendj
+    rm -rf /opt/amazon-corretto-*
+    rm -rf /opt/jython*
+    rm -rf /opt/jetty* 
+    rm -rf /opt/jre
 fi
 exit 0

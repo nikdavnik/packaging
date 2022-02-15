@@ -1,1 +1,2 @@
-/gluu-server/	/opt/
+opt/dist/*              /opt/dist/
+opt/jans/*              /opt/jans/

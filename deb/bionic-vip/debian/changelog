@@ -1,5 +1,0 @@
-gluu-server-vip-4.0 %VERSION% %DIST%; urgency=medium
-
-  * New version vip 4.0
-
- -- Davit Nikoghosyan <davit@gluu.org>  Tue, 02 Apr 2019 14:21:54 +0200

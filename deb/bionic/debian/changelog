@@ -1,6 +1,0 @@
-gluu-server %VERSION% %DIST%; urgency=medium
-
-  * New version 4.1.0
-
- -- Davit Nikoghosyan <support@gluu.org>  Thu, 13 Feb 2020 14:21:54 +0200
-
