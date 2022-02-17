@@ -1,4 +1,4 @@
-jans (1.0.0~ubuntu20.04) unstable; urgency=low
+jans (%VERSION%~ubuntu20.04) unstable; urgency=low
 
   * Initial release. 
 
