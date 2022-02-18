@@ -1,5 +1,5 @@
 #!/bin/bash
-VERION=%VERSION%
+VERSION=%VERSION%
 sed -i "s/%VER%/$VERSION/g" debian/changelog
 cd jans-src
 tar cvfz ../jans_%VERSION%.tar.gz *
