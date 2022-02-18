@@ -1,6 +1,10 @@
 #!/bin/bash
 
+VERSION=$(echo "%VERSION%" | awk -F '-' {'print $1'})
+REL=$(echo "%VERSION%" | cut -d'-' -f 2-)
 current_dir=`pwd`
+sed -i "s/%VERSION%/$VERSION/g" jans.spec
+sed -i "s/%REL%/$REL/g" jans.spec
 rpmbuild_path="$current_dir/rpmbuild"
 mkdir -p $rpmbuild_path/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 specfile=jans.spec
