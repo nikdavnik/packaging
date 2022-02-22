@@ -14,4 +14,4 @@ tar cvfz jans-$VERSION.tar.gz jans-$VERSION
 cp jans-$VERSION.tar.gz $rpmbuild_path/SOURCES/.
 rm -rf rpmbuild/RPMS/x86_64/*
 rpmbuild -bb --define "_topdir $rpmbuild_path" $rpmbuild_path/SPECS/$specfile
-
+sha256sum rpmbuild/RPMS/x86_64/jans-$VERSION-$REL.el8.x86_64.rpm > rpmbuild/RPMS/x86_64/jans-$VERSION-$REL.el8.x86_64.rpm.sha256sum
