@@ -7,5 +7,4 @@ cp -a ../debian .
 tar cvfz ../jans_%VERSION%.orig.tar.gz *
 debuild -us -uc
 cd ..
-dpkg-sig -s builder -k 0544BA38 jans_%VERSION%~ubuntu20.04_amd64.deb 
-sha256sum jans_%VERSION%~ubuntu20.04_amd64.deb > jans_%VERSION%~ubuntu20.04_amd64.deb.sha256sum
+chmod a+w jans_%VERSION%~ubuntu20.04_amd64.deb

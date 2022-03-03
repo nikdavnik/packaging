@@ -14,6 +14,4 @@ tar cvfz jans-$VERSION.tar.gz jans-$VERSION
 cp jans-$VERSION.tar.gz $rpmbuild_path/SOURCES/.
 rm -rf rpmbuild/RPMS/x86_64/*
 rpmbuild -bb --define "_topdir $rpmbuild_path" $rpmbuild_path/SPECS/$specfile
-echo '%_gpg_name moauto (automation) <54212639+mo-auto@users.noreply.github.com>' >> /etc/rpm/macros
-rpm --define "_gpg_name moauto (automation) <54212639+mo-auto@users.noreply.github.com>" --addsign rpmbuild/RPMS/x86_64/jans-$VERSION-$REL.suse15.x86_64.rpm
-sha256sum rpmbuild/RPMS/x86_64/jans-$VERSION-$REL.suse15.x86_64.rpm > rpmbuild/RPMS/x86_64/jans-$VERSION-$REL.suse15.x86_64.rpm.sha256sum
+chmod a+w rpmbuild/RPMS/x86_64/jans-$VERSION-$REL.suse15.x86_64.rpm
