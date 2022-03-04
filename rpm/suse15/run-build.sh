@@ -15,3 +15,4 @@ cp jans-$VERSION.tar.gz $rpmbuild_path/SOURCES/.
 rm -rf rpmbuild/RPMS/x86_64/*
 rpmbuild -bb --define "_topdir $rpmbuild_path" $rpmbuild_path/SPECS/$specfile
 chmod a+w rpmbuild/RPMS/x86_64/jans-$VERSION-$REL.suse15.x86_64.rpm
+chmod a+w rpmbuild/RPMS/x86_64
