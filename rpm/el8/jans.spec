@@ -5,7 +5,7 @@ Summary:        Janssen
 License:        Apache-2.0
 URL:            https://www.gluu.org/
 Source0:        jans-%VER%.tar.gz
-Requires:       python3-ldap3, python3-six, python3-ruamel-yaml, python3, python3-PyMySQL, tar, net-tools, httpd, mod_ssl, curl, wget, tar, xz, unzip, rsyslog, python3-requests, python3-certifi, bzip2, python3-pyasn1
+Requires:       httpd, mod_ssl, mod_auth_openidc, curl, wget, tar, xz, unzip, rsyslog, bzip2, python3-ldap3, python3-requests, python3-ruamel-yaml, python3-certifi, python3-PyMySQL, python3-cryptography, python3-prompt-toolkit
 %description
 Janssen enables organizations to build a scalable centralized authentication and authorization service using free open source software.
 
