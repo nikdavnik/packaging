@@ -1,6 +1,6 @@
 Name:           jans
 Version:        %VER%
-Release:        %REL%.el8
+Release:        %RELEASE%
 Summary:        Janssen
 License:        Apache-2.0
 URL:            https://www.gluu.org/

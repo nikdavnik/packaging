@@ -1,10 +1,15 @@
 #!/bin/bash
 
 VERSION=$(echo "%VERSION%" | awk -F '-' {'print $1'})
-REL=$(echo "%VERSION%" | cut -d'-' -f 2-)
+REL=$(echo "%VERSION%" | sed "s/^${VERSION}//g" | sed "s/^-//g")
 current_dir=`pwd`
 sed -i "s/%VER%/$VERSION/g" jans.spec
-sed -i "s/%REL%/$REL/g" jans.spec
+if [ -z "$REL" ]; then
+        RELEASE="suse15"
+else
+        RELEASE="$REL.suse15"
+fi
+sed -i "s/%RELEASE%/$RELEASE/g" jans.spec
 rpmbuild_path="$current_dir/rpmbuild"
 mkdir -p $rpmbuild_path/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 specfile=jans.spec
