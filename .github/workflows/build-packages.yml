@@ -22,20 +22,6 @@ jobs:
             asset_path: gluu-server-nochroot
             sign_cmd: dpkg-sig -s builder -k DE92BEF14A1A4E542F678B64DC3C790386C73900
             python_version: 3.8
-          - name: el8
-            asset_suffix: -el8.x86_64.rpm
-            build_files: rpm/el8
-            asset_prefix: '-'
-            asset_path: gluu-server-nochroot/rpmbuild/RPMS/x86_64
-            sign_cmd: rpm --addsign
-            python_version: 3.6
-          - name: suse15
-            asset_suffix: -suse15.x86_64.rpm
-            build_files: rpm/suse15
-            asset_prefix: '-'
-            asset_path: gluu-server-nochroot/rpmbuild/RPMS/x86_64
-            sign_cmd: rpm --addsign
-            python_version: 3.6
 
     steps:
     - name: Getting build dependencies
@@ -44,7 +30,7 @@ jobs:
          git clone -b gluu-server-nochroot https://github.com/GluuFederation/packaging
          mkdir -p gluu-server-nochroot/gluu-server-nochroot-src/opt/
          cp -rp packaging/${{ matrix.build_files }}/* gluu-server-nochroot/
-         wget https://raw.githubusercontent.com/JanssenProject/jans/main/jans-linux-setup/jans_setup/install.py -O jans/install.py
+         wget https://raw.githubusercontent.com/JanssenProject/gluu-server-nochroot/main/gluu-server-nochroot-linux-setup/gluu-server-nochroot_setup/install.py -O gluu-server-nochroot/install.py
          sudo add-apt-repository ppa:deadsnakes/ppa
          sudo apt-get update
          sudo apt-get install -y python${{ matrix.python_version }}
@@ -84,14 +70,14 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{github.workspace}}/${{ matrix.asset_path }}/jans${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}
-        asset_name: jans${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}
+        file: ${{github.workspace}}/${{ matrix.asset_path }}/gluu-server-nochroot${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}
+        asset_name: gluu-server-nochroot${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}
         tag: ${{ steps.previoustag.outputs.tag }}
     - name: Upload checksum to release
       id: upload_shas
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{github.workspace}}/${{ matrix.asset_path }}/jans${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}.sha256sum
-        asset_name: jans${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}.sha256sum
+        file: ${{github.workspace}}/${{ matrix.asset_path }}/gluu-server-nochroot${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}.sha256sum
+        asset_name: gluu-server-nochroot${{ matrix.asset_prefix }}${{ steps.previoustag.outputs.version }}${{ matrix.asset_suffix }}.sha256sum
         tag: ${{ steps.previoustag.outputs.tag }}
