@@ -30,7 +30,7 @@ jobs:
          git clone -b gluu-server-nochroot https://github.com/GluuFederation/packaging
          mkdir -p gluu-server-nochroot/gluu-server-nochroot-src/opt/
          cp -rp packaging/${{ matrix.build_files }}/* gluu-server-nochroot/
-         wget https://raw.githubusercontent.com/JanssenProject/gluu-server-nochroot/main/gluu-server-nochroot-linux-setup/gluu-server-nochroot_setup/install.py -O gluu-server-nochroot/install.py
+         wget wget https://raw.githubusercontent.com/GluuFederation/community-edition-setup/version_4.4.0/gluu_install.py -O gluu-server-nochroot/install.py
          sudo add-apt-repository ppa:deadsnakes/ppa
          sudo apt-get update
          sudo apt-get install -y python${{ matrix.python_version }}
