@@ -39,6 +39,7 @@ jobs:
       id: previoustag
       run: |
         echo "::set-output name=version::$(echo 4.4.0)"
+        echo "::set-output name=tag::$(echo v4.4.0)"
     - name: Print Version
       run: |
         echo "${{ steps.previoustag.outputs.version }}"
